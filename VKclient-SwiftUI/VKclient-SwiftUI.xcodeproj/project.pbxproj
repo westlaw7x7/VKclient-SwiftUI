@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		629398AE27B0218200A6FDD9 /* VKclient_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629398AD27B0218200A6FDD9 /* VKclient_SwiftUIApp.swift */; };
-		629398B027B0218200A6FDD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629398AF27B0218200A6FDD9 /* ContentView.swift */; };
+		629398B027B0218200A6FDD9 /* LoginContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629398AF27B0218200A6FDD9 /* LoginContentView.swift */; };
 		629398B227B0218300A6FDD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 629398B127B0218300A6FDD9 /* Assets.xcassets */; };
 		629398B527B0218300A6FDD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 629398B427B0218300A6FDD9 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		629398AA27B0218200A6FDD9 /* VKclient-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VKclient-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		629398AD27B0218200A6FDD9 /* VKclient_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKclient_SwiftUIApp.swift; sourceTree = "<group>"; };
-		629398AF27B0218200A6FDD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		629398AF27B0218200A6FDD9 /* LoginContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContentView.swift; sourceTree = "<group>"; };
 		629398B127B0218300A6FDD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		629398B427B0218300A6FDD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,8 +51,8 @@
 		629398AC27B0218200A6FDD9 /* VKclient-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				62C457F227B282C000F6F1B5 /* View */,
 				629398AD27B0218200A6FDD9 /* VKclient_SwiftUIApp.swift */,
-				629398AF27B0218200A6FDD9 /* ContentView.swift */,
 				629398B127B0218300A6FDD9 /* Assets.xcassets */,
 				629398B327B0218300A6FDD9 /* Preview Content */,
 			);
@@ -65,6 +65,14 @@
 				629398B427B0218300A6FDD9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		62C457F227B282C000F6F1B5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				629398AF27B0218200A6FDD9 /* LoginContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				629398B027B0218200A6FDD9 /* ContentView.swift in Sources */,
+				629398B027B0218200A6FDD9 /* LoginContentView.swift in Sources */,
 				629398AE27B0218200A6FDD9 /* VKclient_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

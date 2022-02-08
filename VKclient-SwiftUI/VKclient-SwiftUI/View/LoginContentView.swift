@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LoginContentView.swift
 //  VKclient-SwiftUI
 //
 //  Created by Alexander Grigoryev on 06.02.2022.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
+struct LoginContentView: View {
     
     @State private var login = ""
     @State private var password = ""
@@ -31,6 +31,7 @@ struct ContentView: View {
                     .aspectRatio( contentMode: .fill)
                     .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
             }
+            
             ScrollView {
                 VStack(alignment: .center) {
                     Text("VK APP")
@@ -39,40 +40,78 @@ struct ContentView: View {
                         .padding(.vertical, 30)
                         .padding(.top, 200)
                         .font(.largeTitle)
+                        .shadow(color: .black,
+                                radius: 4,
+                                x: -18.0,
+                                y: 15.0)
+                    
+                        
+                        
+                        
                     
                     HStack() {
                         Text("Login")
                             .fontWeight(.medium)
+                            .shadow(color: .black,
+                                    radius: 2.0,
+                                    x: -18.0,
+                                    y: 11.0)
+                            .padding(.leading, 50.0)
+                            
                         
                         Spacer()
                         TextField("", text: $login)
                             .frame(maxWidth: 150)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .shadow(color: .black,
+                                    radius: 13.0,
+                                    x: -18.0,
+                                    y: 15.0)
+                            .padding(.trailing, 40.0)
+                            
                     }
+                    
                     
                     HStack() {
                         Text("Password")
                             .fontWeight(.medium)
+                            .shadow(color: .black,
+                                    radius: 2.0,
+                                    x: -18.0,
+                                    y: 11.0)
+                            .padding(.leading, 50.0)
                         Spacer()
                         SecureField("", text: $password)
                             .frame(maxWidth: 150)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .shadow(color: .black,
+                                    radius: 13.0,
+                                    x: -18.0,
+                                    y: 15.0)
+                            .padding(.trailing, 40.0)
+                            .padding(.leading, 10.0)
                     }
+                    
+                    
                     
                     
                     Button("Enter") {
                         print("Hello")
                     }
+                    
                     .padding(.top, 20)
                     .disabled(login.isEmpty || password.isEmpty)
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
                     
-                } .frame(maxWidth: 250)
+                }
+                .frame(maxWidth: 350)
+                    
             } . onTapGesture {
                 UIApplication.shared.endEditing()
             }
         }
+      
     }
 }
 
@@ -84,6 +123,6 @@ extension UIApplication {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LoginContentView()
     }
 }
