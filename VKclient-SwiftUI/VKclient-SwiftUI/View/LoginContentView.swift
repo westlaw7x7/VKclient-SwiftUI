@@ -45,9 +45,9 @@ struct LoginContentView: View {
                                 x: -18.0,
                                 y: 15.0)
                     
-                        
-                        
-                        
+                    
+                    
+                    
                     
                     HStack() {
                         Text("Login")
@@ -57,7 +57,7 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 11.0)
                             .padding(.leading, 50.0)
-                            
+                        
                         
                         Spacer()
                         TextField("", text: $login)
@@ -68,7 +68,7 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 15.0)
                             .padding(.trailing, 40.0)
-                            
+                        
                     }
                     
                     
@@ -106,12 +106,12 @@ struct LoginContentView: View {
                     
                 }
                 .frame(maxWidth: 350)
-                    
+                
             } . onTapGesture {
                 UIApplication.shared.endEditing()
             }
         }
-      
+        
     }
 }
 
