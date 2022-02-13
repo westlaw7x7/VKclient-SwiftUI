@@ -9,22 +9,25 @@ import SwiftUI
 
 struct GroupsView: View {
     var body: some View {
-        VStack {
-            
-            List(groups) { group in
-                HStack {
-                    AvatarImage {
-                        Image(uiImage: group.image)
-                    }
-                    
-                    TextBuilder {
-                        Text(group.name)
+        
+            VStack {
+                
+                List(groups) { group in
+                    HStack {
+                        AvatarImage {
+                            Image(uiImage: group.image)
+                        }
+                        
+                        TextBuilder {
+                            Text(group.name)
+                        }
                     }
                 }
             }
         }
+        
     }
-}
+
 
 struct GroupsList_Previews: PreviewProvider {
     static var previews: some View {

@@ -17,8 +17,13 @@ struct AvatarImage: View {
     var body: some View {
         content
             .resizable()
-            .frame(width: 80, height: 80)
-            .modifier(ShadowModifier(shadowColor: .black, shadowRadius: 40))
+            .scaledToFill()
+            .frame(width: 100,
+                   height: 100,
+                   alignment: .leading)
+            .clipShape(Circle())
+//            .modifier(ShadowModifier(shadowColor: .black, shadowRadius: 40))
+            .modifier(ShadowModifier(shadowColor: .black))
     }
 }
 
