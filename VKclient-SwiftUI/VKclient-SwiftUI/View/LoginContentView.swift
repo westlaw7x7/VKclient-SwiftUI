@@ -46,8 +46,6 @@ struct LoginContentView: View {
                                 radius: 4,
                                 x: -18.0,
                                 y: 15.0)
-                        
-                    
                     HStack() {
                         Text("Login")
                             .fontWeight(.medium)
@@ -56,7 +54,6 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 11.0)
                             .padding(.leading, 50.0)
-                        
                         Spacer()
                         TextField("", text: $login)
                             .frame(maxWidth: 150)
@@ -66,10 +63,7 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 15.0)
                             .padding(.trailing, 40.0)
-                        
                     }
-                    
-                    
                     HStack() {
                         Text("Password")
                             .fontWeight(.medium)
@@ -89,38 +83,28 @@ struct LoginContentView: View {
                             .padding(.trailing, 40.0)
                             .padding(.leading, 10.0)
                     }
-                    
-                    
-                    
-                    
                     Button(action: verifyLoginData){
                         Text("Enter")
                     }
-                    
                     .padding(.top, 20)
                     .disabled(login.isEmpty || password.isEmpty)
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
-                    
                 }
                 .frame(maxWidth: 350)
-              
-                
             }
-            }.onTapGesture {
-                UIApplication.shared.endEditing()
-            }.alert(isPresented: $showIncorrectCredentialsWarning, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
-            })
-        
+        }.onTapGesture {
+            UIApplication.shared.endEditing()
+        }.alert(isPresented: $showIncorrectCredentialsWarning, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
+        })
     }
     
     private func verifyLoginData() {
-        if login == "a" || password == "1" {
-        isUserLoggedIn = true
+        if login == "A" || password == "1" {
+            isUserLoggedIn = true
         } else {
             showIncorrectCredentialsWarning = true
         }
-        
         password = ""
     }
 }

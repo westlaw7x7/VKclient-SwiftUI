@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6249C2AA27BA576B00B5F4EB /* SearchGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249C2A927BA576B00B5F4EB /* SearchGroupView.swift */; };
 		62505D9C27B95DFA008F017B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9B27B95DFA008F017B /* ContainerView.swift */; };
 		62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9D27B965E1008F017B /*  VKclient_SwiftUIApp.swift */; };
 		62505DA027B97A16008F017B /* PhotoFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9F27B97A16008F017B /* PhotoFriendsView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6249C2A927BA576B00B5F4EB /* SearchGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupView.swift; sourceTree = "<group>"; };
 		62505D9B27B95DFA008F017B /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		62505D9D27B965E1008F017B /*  VKclient_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " VKclient_SwiftUIApp.swift"; sourceTree = "<group>"; };
 		62505D9F27B97A16008F017B /* PhotoFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendsView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				62A8AA1C27B4171700F80EA2 /* GroupsView.swift */,
 				62A8AA1A27B4170A00F80EA2 /* FriendsView.swift */,
 				62505D9F27B97A16008F017B /* PhotoFriendsView.swift */,
+				6249C2A927BA576B00B5F4EB /* SearchGroupView.swift */,
 				62A8AA1527B416EB00F80EA2 /* Reusable */,
 				629398AF27B0218200A6FDD9 /* LoginContentView.swift */,
 				62505D9B27B95DFA008F017B /* ContainerView.swift */,
@@ -202,6 +205,7 @@
 				62A8AA1B27B4170A00F80EA2 /* FriendsView.swift in Sources */,
 				629398B027B0218200A6FDD9 /* LoginContentView.swift in Sources */,
 				62A8AA1427B416B800F80EA2 /* GroupModel.swift in Sources */,
+				6249C2AA27BA576B00B5F4EB /* SearchGroupView.swift in Sources */,
 				6289555227B826B6007FC75D /* NewsView.swift in Sources */,
 				62505DA027B97A16008F017B /* PhotoFriendsView.swift in Sources */,
 				62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */,

@@ -29,13 +29,12 @@ struct GridCell: View {
                        height: 100,
                        alignment: .leading)
                 .clipShape(Circle())
-                
+            
             TextBuilder {
                 Text(user.name)
             }
         }
     }
-    
 }
 
 struct PhotoFriendsView_Previews: PreviewProvider {

@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct GroupsView: View {
+    
     var body: some View {
-        
+        NavigationLink {
+            SearchGroupView()
+        } label: {
             VStack {
-                
                 List(groups) { group in
                     HStack {
-                        AvatarImage {
+                        GroupImage {
                             Image(uiImage: group.image)
                         }
-                        
                         TextBuilder {
                             Text(group.name)
                         }
@@ -25,9 +26,8 @@ struct GroupsView: View {
                 }
             }
         }
-        
     }
-
+}
 
 struct GroupsList_Previews: PreviewProvider {
     static var previews: some View {

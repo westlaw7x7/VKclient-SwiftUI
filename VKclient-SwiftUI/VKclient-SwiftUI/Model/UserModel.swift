@@ -16,7 +16,6 @@ struct User: Hashable, Identifiable {
     let age: Int
 }
 
-
 var users: [User] = [
     User(name: "Sylvester", surName: "Stallone", image: UIImage(named: "Sylvester"), age: 75),
     User(name: "Jason", surName: "Statham", image: UIImage(named: "Jason"), age: 54),

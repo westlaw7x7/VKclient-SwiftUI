@@ -17,9 +17,10 @@ struct ContainerView: View {
                 NavigationLink(destination: TabViewVK(),
                                isActive: $shouldShowMainView) {
                     EmptyView()
-                }
+                } .navigationTitle("Login screen")
+                    .navigationBarHidden(true)
             }
-        } 
+        }
     }
 }
 
