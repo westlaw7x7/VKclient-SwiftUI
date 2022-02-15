@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct FriendsView: View {
+    @State var groupedArray: [String: [User]] = [:]
+    
     var body: some View {
-        
-        VStack {
-            List(users) { users in
-                HStack {
-                    AvatarImage {
-                        Image(uiImage: users.image)
-                    }
-                    TextBuilder {
-                        Text("\(users.name) \(users.surName)")
+        NavigationLink {
+            PhotoFriendsView()
+        } label: {
+            List() {
+                ForEach(groupedArray.keys.sorted(), id: \.self) {key in
+                    Section(header: Text(key)) {
+                        ForEach(groupedArray[key]!, id: \.self) {value in
+                            HStack{
+                                AvatarImage {
+                                    Image(uiImage: value.image)
+                                }
+                                TextBuilder {
+                                    Text("\(value.name) \(value.surName)")
+                                }
+                            }
+                        }
                     }
                 }
+            }
+            .onAppear {
+                groupedArray = Dictionary(
+                    grouping: users,
+                    by: {$0.surName.first?.uppercased() ?? ""}
+                ).mapValues{$0.sorted(by:{ $0.surName < $1.surName })}
             }
         }
     }

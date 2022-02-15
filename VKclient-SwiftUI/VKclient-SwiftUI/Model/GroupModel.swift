@@ -11,13 +11,13 @@ import UIKit
 struct Group: Identifiable {
     
     let name: String
-    let image = UIImage(systemName: "person.3")!
+    let image: UIImage!
     let id = UUID()
 }
 
 var groups: [Group] = [
-Group(name: "Apple fan"),
-Group(name: "Star Wars"),
-Group(name: "News today"),
-Group(name: "Finance")
+    Group(name: "Apple fan", image: UIImage(named: "Apple")),
+    Group(name: "World of Warcraft", image: UIImage(named: "WoW")),
+    Group(name: "News today", image: UIImage(named: "News")),
+    Group(name: "Finance", image: UIImage(named: "Finance"))
 ]

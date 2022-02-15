@@ -12,6 +12,8 @@ struct LoginContentView: View {
     
     @State private var login = ""
     @State private var password = ""
+    @State private var showIncorrectCredentialsWarning = false
+    @Binding var isUserLoggedIn: Bool
     
     private let keyboardIsOnPublisher = Publishers.Merge(
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -38,17 +40,12 @@ struct LoginContentView: View {
                         .fontWeight(.heavy)
                         .foregroundColor(Color.black)
                         .padding(.vertical, 30)
-                        .padding(.top, 200)
+                        .padding(.top, 100)
                         .font(.largeTitle)
                         .shadow(color: .black,
                                 radius: 4,
                                 x: -18.0,
                                 y: 15.0)
-                    
-                    
-                    
-                    
-                    
                     HStack() {
                         Text("Login")
                             .fontWeight(.medium)
@@ -57,8 +54,6 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 11.0)
                             .padding(.leading, 50.0)
-                        
-                        
                         Spacer()
                         TextField("", text: $login)
                             .frame(maxWidth: 150)
@@ -68,10 +63,7 @@ struct LoginContentView: View {
                                     x: -18.0,
                                     y: 15.0)
                             .padding(.trailing, 40.0)
-                        
                     }
-                    
-                    
                     HStack() {
                         Text("Password")
                             .fontWeight(.medium)
@@ -91,27 +83,29 @@ struct LoginContentView: View {
                             .padding(.trailing, 40.0)
                             .padding(.leading, 10.0)
                     }
-                    
-                    
-                    
-                    
-                    Button("Enter") {
-                        print("Hello")
+                    Button(action: verifyLoginData){
+                        Text("Enter")
                     }
-                    
                     .padding(.top, 20)
                     .disabled(login.isEmpty || password.isEmpty)
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
-                    
                 }
                 .frame(maxWidth: 350)
-                
-            } . onTapGesture {
-                UIApplication.shared.endEditing()
             }
+        }.onTapGesture {
+            UIApplication.shared.endEditing()
+        }.alert(isPresented: $showIncorrectCredentialsWarning, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
+        })
+    }
+    
+    private func verifyLoginData() {
+        if login == "A" || password == "1" {
+            isUserLoggedIn = true
+        } else {
+            showIncorrectCredentialsWarning = true
         }
-        
+        password = ""
     }
 }
 
@@ -121,8 +115,6 @@ extension UIApplication {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginContentView()
-    }
-}
+
+
+

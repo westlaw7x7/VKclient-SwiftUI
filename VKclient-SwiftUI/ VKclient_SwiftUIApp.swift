@@ -1,8 +1,8 @@
 //
-//  VKclient_SwiftUIApp.swift
+//   VKclient_SwiftUIApp.swift
 //  VKclient-SwiftUI
 //
-//  Created by Alexander Grigoryev on 06.02.2022.
+//  Created by Alexander Grigoryev on 13.02.2022.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct VKclient_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginContentView()
+            ContainerView()
         }
     }
 }

@@ -8,19 +8,20 @@
 import Foundation
 import UIKit
 
-struct User: Identifiable {
-    
+struct User: Hashable, Identifiable {
     let id = UUID()
     let name: String
     let surName: String
-    let image = UIImage(systemName: "person.circle")!
+    let image: UIImage!
     let age: Int
 }
 
 var users: [User] = [
-    User(name: "Ivan", surName: "Degtyarev", age: 20),
-User(name: "Jason", surName: "Smith", age: 32),
-User(name: "Fred", surName: "Taylor", age: 50)
+    User(name: "Sylvester", surName: "Stallone", image: UIImage(named: "Sylvester"), age: 75),
+    User(name: "Jason", surName: "Statham", image: UIImage(named: "Jason"), age: 54),
+    User(name: "Arnold", surName: "Schwarzenegger", image: UIImage(named: "Arnold"), age: 74),
+    User(name: "Nikolay", surName: "Kletkin", image: UIImage(named: "Колян"), age: 58),
+    User(name: "Elon", surName: "Musk", image: UIImage(named: "Elon"), age: 50)
 ]
 
 

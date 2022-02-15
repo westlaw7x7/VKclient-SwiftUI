@@ -10,11 +10,10 @@ import SwiftUI
 struct ShadowModifier: ViewModifier {
     
     let shadowColor: Color
-    let shadowRadius: CGFloat
     
     func body(content: Content) -> some View {
         content
-            .shadow(color: .black, radius: shadowRadius)
+            .shadow(color: .black, radius: 10, x: -15, y: 10)
     }
 }
 

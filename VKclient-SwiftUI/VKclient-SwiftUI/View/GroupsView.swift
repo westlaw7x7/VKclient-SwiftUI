@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct GroupsView: View {
+    
     var body: some View {
-        VStack {
-            
-            List(groups) { group in
-                HStack {
-                    AvatarImage {
-                        Image(uiImage: group.image)
-                    }
-                    
-                    TextBuilder {
-                        Text(group.name)
+        NavigationLink {
+            SearchGroupView()
+        } label: {
+            VStack {
+                List(groups) { group in
+                    HStack {
+                        GroupImage {
+                            Image(uiImage: group.image)
+                        }
+                        TextBuilder {
+                            Text(group.name)
+                        }
                     }
                 }
             }
