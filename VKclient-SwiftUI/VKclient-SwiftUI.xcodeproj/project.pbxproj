@@ -12,6 +12,11 @@
 		62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9D27B965E1008F017B /*  VKclient_SwiftUIApp.swift */; };
 		62505DA027B97A16008F017B /* PhotoFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9F27B97A16008F017B /* PhotoFriendsView.swift */; };
 		62505DA327B97C43008F017B /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 62505DA227B97C43008F017B /* QGrid */; };
+		626362AF27BCE94C00FE5636 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 626362AE27BCE94C00FE5636 /* Realm */; };
+		626362B127BCE94C00FE5636 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 626362B027BCE94C00FE5636 /* RealmSwift */; };
+		626362B427BCEA3D00FE5636 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 626362B327BCEA3D00FE5636 /* SwiftyJSON */; };
+		626362B727BCEAA200FE5636 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 626362B627BCEAA200FE5636 /* Kingfisher */; };
+		626362BA27BCEABE00FE5636 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 626362B927BCEABE00FE5636 /* Alamofire */; };
 		6289555027B821A7007FC75D /* TabViewVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6289554F27B821A7007FC75D /* TabViewVK.swift */; };
 		6289555227B826B6007FC75D /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6289555127B826B6007FC75D /* NewsView.swift */; };
 		629398B027B0218200A6FDD9 /* LoginContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629398AF27B0218200A6FDD9 /* LoginContentView.swift */; };
@@ -49,7 +54,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626362B127BCE94C00FE5636 /* RealmSwift in Frameworks */,
+				626362AF27BCE94C00FE5636 /* Realm in Frameworks */,
+				626362B427BCEA3D00FE5636 /* SwiftyJSON in Frameworks */,
+				626362BA27BCEABE00FE5636 /* Alamofire in Frameworks */,
 				62505DA327B97C43008F017B /* QGrid in Frameworks */,
+				626362B727BCEAA200FE5636 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +154,11 @@
 			name = "VKclient-SwiftUI";
 			packageProductDependencies = (
 				62505DA227B97C43008F017B /* QGrid */,
+				626362AE27BCE94C00FE5636 /* Realm */,
+				626362B027BCE94C00FE5636 /* RealmSwift */,
+				626362B327BCEA3D00FE5636 /* SwiftyJSON */,
+				626362B627BCEAA200FE5636 /* Kingfisher */,
+				626362B927BCEABE00FE5636 /* Alamofire */,
 			);
 			productName = "VKclient-SwiftUI";
 			productReference = 629398AA27B0218200A6FDD9 /* VKclient-SwiftUI.app */;
@@ -175,6 +190,10 @@
 			mainGroup = 629398A127B0218200A6FDD9;
 			packageReferences = (
 				62505DA127B97C43008F017B /* XCRemoteSwiftPackageReference "QGrid" */,
+				626362AD27BCE94C00FE5636 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				626362B227BCEA3D00FE5636 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				626362B527BCEAA200FE5636 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				626362B827BCEABE00FE5636 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 629398AB27B0218200A6FDD9 /* Products */;
 			projectDirPath = "";
@@ -427,6 +446,38 @@
 				minimumVersion = 0.1.4;
 			};
 		};
+		626362AD27BCE94C00FE5636 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		626362B227BCEA3D00FE5636 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		626362B527BCEAA200FE5636 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		626362B827BCEABE00FE5636 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -434,6 +485,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 62505DA127B97C43008F017B /* XCRemoteSwiftPackageReference "QGrid" */;
 			productName = QGrid;
+		};
+		626362AE27BCE94C00FE5636 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626362AD27BCE94C00FE5636 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		626362B027BCE94C00FE5636 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626362AD27BCE94C00FE5636 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		626362B327BCEA3D00FE5636 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626362B227BCEA3D00FE5636 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		626362B627BCEAA200FE5636 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626362B527BCEAA200FE5636 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		626362B927BCEABE00FE5636 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626362B827BCEABE00FE5636 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
