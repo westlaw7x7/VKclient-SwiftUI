@@ -15,7 +15,8 @@ struct TabViewVK: View {
     var body: some View {
         
         TabView(selection: $selection, content: {
-            FriendsView()
+            let viewModel = UserViewModel()
+            FriendsView(viewModel: viewModel)
                 .tabItem {
                     Label("Friends", systemImage: "person")
                     Text(pageTitles[0])

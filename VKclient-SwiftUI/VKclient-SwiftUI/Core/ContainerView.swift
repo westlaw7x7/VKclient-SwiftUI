@@ -16,7 +16,7 @@ struct ContainerView: View {
                 LoginContentView(isUserLoggedIn: $shouldShowMainView)
                 NavigationLink(destination: TabViewVK(),
                                isActive: $shouldShowMainView) {
-                    EmptyView()
+                    VKLoginWebView()
                 } .navigationTitle("Login screen")
                     .navigationBarHidden(true)
             }
