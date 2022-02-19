@@ -10,13 +10,20 @@ import WebKit
 
 struct VKLoginWebView: UIViewRepresentable {
     
-    fileprivate let navigationDelegate = WebViewNavigationDelegate()
+    var success: () -> Void
+    
+    init(completion: @escaping () -> Void) {
+        success = completion
+    }
     
     func makeUIView(context: Context) -> WKWebView {
-        
         let webView = WKWebView()
-        webView.navigationDelegate = navigationDelegate
+        webView.navigationDelegate = context.coordinator
         return webView
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
@@ -24,6 +31,7 @@ struct VKLoginWebView: UIViewRepresentable {
             uiView.load(request)
         }
     }
+
     
     private func buildAuthRequest() -> URLRequest? {
         var components = URLComponents()
@@ -42,15 +50,30 @@ struct VKLoginWebView: UIViewRepresentable {
     }
 }
 
-class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
+
+class Coordinator: NSObject, WKNavigationDelegate {
+    
+    let parent: VKLoginWebView
+    
+    init(_ parent: VKLoginWebView) {
+        self.parent = parent
+    }
+    
+  
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+    
+    }
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        guard let url = navigationResponse.response.url,
+        
+        guard
+            let url = navigationResponse.response.url,
               url.path == "/blank.html",
-              let fragment = url.fragment else {
-                  decisionHandler(.allow)
-                  return
-              }
-        let params = fragment
+              let fragment = url.fragment
+        else { return decisionHandler(.allow) }
+        
+        let parameters = fragment
             .components(separatedBy: "&")
             .map { $0.components(separatedBy: "=") }
             .reduce([String: String]()) { result, param in
@@ -60,15 +83,20 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 dict[key] = value
                 return dict
             }
-        guard let token = params["access_token"],
-              let userIdString = params["user_id"],
-              let _ = Int(userIdString)
-        else {
-            decisionHandler(.allow)
-            return
-        }
-        UserDefaults.standard.set(token, forKey: "vkToken")
-        NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
-        decisionHandler(.cancel)
+        guard let token = parameters["access_token"],
+              let userIdString = parameters["user_id"],
+             let _ = Int(userIdString)
+
+        else { return decisionHandler(.allow) }
+        
+
+            if token.count > 0 && (Int(userIdString) ?? 0) > 0 {
+                Auth.instance.userID = Int(userIdString) ?? 0
+                Auth.instance.token = token
+                parent.success()
+            }
+            decisionHandler(.cancel)
     }
 }
+
+

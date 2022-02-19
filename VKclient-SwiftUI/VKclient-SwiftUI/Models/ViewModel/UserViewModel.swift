@@ -8,20 +8,21 @@
 import Foundation
 
 class UserViewModel: ObservableObject, Identifiable {
-    
+
+
     let id = UUID()
-    
+
    @Published var users: [UserObject] = []
     
     let networkService = NetworkService()
-//
+
 //    init(users: [UserObject], networkService: NetworkService) {
 //        self.users = users
 //        self.networkService = networkService
 //    }
-    
+
     public func fetchUsers() {
-        guard let token = UserDefaults.standard.string(forKey: "vkToken") else { return }
+        let token = Auth.instance.token
         
         networkService.loadUsers(token: token) { [weak self] users in
             guard let self = self else { return }

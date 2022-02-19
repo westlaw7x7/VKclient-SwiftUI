@@ -6,99 +6,78 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FriendsView: View {
-//    @State var groupedArray: [String: [User]] = [:]
     
-    @ObservedObject var viewModel: UserViewModel
     @State var groupedArray: [String: [UserObject]] = [:]
+//    @State var groupedArray: [String: [UserViewModel]] = [:]
     
+    @ObservedObject var viewModel: UserViewModel 
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
+        List() {
+            ForEach(viewModel.users, id: \.self) { user in
         NavigationLink {
-//            PhotoFriendsView()
-            EmptyView()
+//            PhotoFriendsView(viewModel: viewModel)
         } label: {
-            List() {
-                ForEach(groupedArray.keys.sorted(), id: \.self) {key in
-                    Section(header: Text(key)) {
-                        ForEach(groupedArray[key]!, id: \.self) {value in
-                            HStack{
-                                AvatarImage {
-                                    Image(uiImage: UIImage(named: value.avatar)!)
-                                }
-                                TextBuilder {
-                                    Text("\(value.firstName) \(value.lastName)")
-                                }
+            VStack {
+                        HStack {
+                            KFImage(URL(string: user.avatar))
+                            TextBuilder {
+                                Text("\(user.firstName) \(user.lastName)")
                             }
                         }
                     }
-                }
-            }
-            .onAppear {
-                viewModel.fetchUsers()
-                groupedArray = Dictionary(
-                    grouping: viewModel,
-                    by: {$0.lastName.first?.uppercased() ?? ""}
-                ).mapValues{$0.sorted(by:{ $0.lastName < $1.lastName })}
             }
         }
+        }.onAppear(perform: viewModel.fetchUsers)
     }
 }
-
-//    var body: some View {
-//
-//        VStack {
-//                 List(users) { users in
-//                     HStack {
-//                         AvatarImage {
-//                             Image(uiImage: users.image)
-//                         }
-//                         TextBuilder {
-//                             Text("\(users.name) \(users.surName)")
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-
     
+//    MARK: View with sections for each first letter of the surName
 //    var body: some View {
 //        NavigationLink {
-////            PhotoFriendsView()
-//            EmptyView()
+//            PhotoFriendsView()
 //        } label: {
-//            List() {
-//                ForEach(groupedArray.keys.sorted(), id: \.self) {key in
-//                    Section(header: Text(key)) {
-//                        ForEach(groupedArray[key]!, id: \.self) {value in
-//                            HStack{
-//                                AvatarImage {
-//                                    Image(uiImage: value.image)
-//                                }
-//                                TextBuilder {
-//                                    Text("\(value.name) \(value.surName)")
+//            VStack {
+//                List() {
+//                    ForEach(groupedArray.keys.sorted(), id: \.self) { key in
+//                        Section(header: Text(key)) {
+//                            ForEach(groupedArray[key]!, id: \.self) { value in
+//                                HStack {
+//                                    KFImage(URL(string: value.avatar))
+//                                    TextBuilder {
+//                                        Text("\(value.firstName) \(value.lastName)")
+//                                    }
 //                                }
 //                            }
 //                        }
 //                    }
 //                }
-//            }
-//            .onAppear {
-//                groupedArray = Dictionary(
-//                    grouping: users,
-//                    by: {$0.surName.first?.uppercased() ?? ""}
-//                ).mapValues{$0.sorted(by:{ $0.surName < $1.surName })}
+//                .listStyle(PlainListStyle())
+//                .onAppear {
+//                    viewModel.fetchUsers()
+//                    groupedArray = Dictionary(
+//                        grouping: viewModel.users,
+//                        by: {$0.lastName.first?.uppercased() ?? ""}
+//                    ).mapValues{$0.sorted(by:{ $0.lastName < $1.lastName })}
+//
+//
+//
+//                }
+//
+//
+//
 //            }
 //        }
 //    }
 //}
-
+//
 struct FriendsList_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = UserViewModel()

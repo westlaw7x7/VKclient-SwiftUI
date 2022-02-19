@@ -12,8 +12,9 @@ struct LoginContentView: View {
     
     @State private var login = ""
     @State private var password = ""
-    @State private var showIncorrectCredentialsWarning = false
-    @Binding var isUserLoggedIn: Bool
+    @State private var showAlert = false
+    @State private var shouldShowLogo: Bool = true
+    @Binding var isLogin: Bool
     
     private let keyboardIsOnPublisher = Publishers.Merge(
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -36,16 +37,19 @@ struct LoginContentView: View {
             
             ScrollView {
                 VStack(alignment: .center) {
-                    Text("VK APP")
-                        .fontWeight(.heavy)
-                        .foregroundColor(Color.black)
-                        .padding(.vertical, 30)
-                        .padding(.top, 100)
-                        .font(.largeTitle)
-                        .shadow(color: .black,
-                                radius: 4,
-                                x: -18.0,
-                                y: 15.0)
+                    if shouldShowLogo {
+                        Text("VK APP")
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color.black)
+                            .padding(.vertical, 30)
+                            .padding(.top, 20)
+                            .font(.largeTitle)
+                            .shadow(color: .black,
+                                    radius: 4,
+                                    x: -18.0,
+                                    y: 15.0)
+                    }
+                    
                     HStack() {
                         Text("Login")
                             .fontWeight(.medium)
@@ -83,30 +87,35 @@ struct LoginContentView: View {
                             .padding(.trailing, 40.0)
                             .padding(.leading, 10.0)
                     }
-                    Button(action: verifyLoginData){
+                    Button(action: verifyLoginData) {
                         Text("Enter")
                     }
                     .padding(.top, 20)
                     .disabled(login.isEmpty || password.isEmpty)
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
-                }
+                } .onReceive(keyboardIsOnPublisher, perform: { isKeyboardOn in
+                    withAnimation(Animation.easeInOut(duration: 0.5)) {
+                        self.shouldShowLogo = !isKeyboardOn
+                    }
+                })
                 .frame(maxWidth: 350)
             }
         }.onTapGesture {
             UIApplication.shared.endEditing()
-        }.alert(isPresented: $showIncorrectCredentialsWarning, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
+        }.alert(isPresented: $showAlert, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
         })
     }
     
     private func verifyLoginData() {
         if login == "A" || password == "1" {
-            isUserLoggedIn = true
+            isLogin = true
         } else {
-            showIncorrectCredentialsWarning = true
+        showAlert = true
+            password = ""
         }
-        password = ""
     }
+    
 }
 
 extension UIApplication {

@@ -9,7 +9,7 @@ import Foundation
 
 final class NetworkService {
     
-    private let url: String = "https://api.vk.com/method"
+    private let url: String = "https://api.vk.com/"
     private let apiVersion: String = "5.92"
     // MARK: Network configuration/session
     let session = URLSession.shared
@@ -23,7 +23,7 @@ final class NetworkService {
     
     func loadUsers(token: String, completion: @escaping([UserObject]) -> Void) {
         
-        urlConstructor.path = "/friends.get"
+        urlConstructor.path = "/method/friends.get"
         urlConstructor.queryItems = [
             URLQueryItem(name: "access_token", value: token),
             URLQueryItem(name: "order", value: "random"),
@@ -46,9 +46,6 @@ final class NetworkService {
             do {
                 let user = try JSONDecoder().decode(UserResponse.self,
                                                     from: responseData).response.items
-                let userRealm = user.map { UserRealm(user: $0) }
-                try RealmService.save(items: userRealm)
-                
                 DispatchQueue.main.async {
                     completion(user)
                 }
