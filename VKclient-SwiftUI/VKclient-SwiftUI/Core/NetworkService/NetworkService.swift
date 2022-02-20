@@ -55,9 +55,47 @@ final class NetworkService {
         }.resume()
     }
     
-    
-}
+    func loadPhotos(token: String, ownerID: Int, completion: @escaping ([PhotosObject]) -> Void) {
 
+        urlConstructor.path = "/method/photos.get"
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "access_token", value: token),
+            URLQueryItem(name: "rev", value: "1"),
+            URLQueryItem(name: "owner_id", value: "\(ownerID)"),
+            URLQueryItem(name: "album_id", value: "profile"),
+            URLQueryItem(name: "offset", value: "0"),
+            URLQueryItem(name: "photo_sizes", value: "0"),
+            URLQueryItem(name: "v", value: apiVersion)
+        ]
+        guard let url = urlConstructor.url else { return }
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 50.0
+        request.setValue("", forHTTPHeaderField: "Token")
+
+        session.dataTask(with: request) { responseData, urlResponse, error in
+            if let response = urlResponse as? HTTPURLResponse {
+                print(response.statusCode)
+            } else { return completion([])}
+            guard
+                error == nil,
+                let responseData = responseData else
+                { return completion([])}
+            do {
+                let user = try JSONDecoder().decode(PhotosResponse.self,
+                                                    from: responseData).response.items
+                DispatchQueue.main.async {
+                    completion(user)
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    
+
+     
+}
 
 
 

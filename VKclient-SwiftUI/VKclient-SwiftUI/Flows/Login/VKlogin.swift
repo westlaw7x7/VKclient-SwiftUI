@@ -32,19 +32,19 @@ struct VKLoginWebView: UIViewRepresentable {
         }
     }
 
-    
     private func buildAuthRequest() -> URLRequest? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "oauth.vk.com"
         components.path = "/authorize"
         components.queryItems = [
-            URLQueryItem(name: "client_id", value: "6704883"),
-            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "client_id", value: "7965892"),
+            URLQueryItem(name: "scope", value: "336918"),
+//          SCOPE : friends, photos, wall, groups
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.130")
+            URLQueryItem(name: "v", value: "5.131")
         ]
         return components.url.map { URLRequest(url: $0) }
     }
@@ -58,8 +58,6 @@ class Coordinator: NSObject, WKNavigationDelegate {
     init(_ parent: VKLoginWebView) {
         self.parent = parent
     }
-    
-  
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
     

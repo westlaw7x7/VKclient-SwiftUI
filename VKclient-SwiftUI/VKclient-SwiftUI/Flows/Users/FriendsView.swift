@@ -9,11 +9,13 @@ import SwiftUI
 import Kingfisher
 
 struct FriendsView: View {
-    
+   
     @State var groupedArray: [String: [UserObject]] = [:]
 //    @State var groupedArray: [String: [UserViewModel]] = [:]
     
-    @ObservedObject var viewModel: UserViewModel 
+    @ObservedObject var viewModel: UserViewModel
+    let user = UserObject()
+    let viewPhotosModel = PhotosViewModel()
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
@@ -23,7 +25,7 @@ struct FriendsView: View {
         List() {
             ForEach(viewModel.users, id: \.self) { user in
         NavigationLink {
-//            PhotoFriendsView(viewModel: viewModel)
+            PhotoFriendsView(viewModelPhotos: viewPhotosModel, user: user)
         } label: {
             VStack {
                         HStack {
@@ -78,9 +80,9 @@ struct FriendsView: View {
 //    }
 //}
 //
-struct FriendsList_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = UserViewModel()
-        FriendsView(viewModel: viewModel)
-    }
-}
+//struct FriendsList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewModel = UserViewModel()
+//        FriendsView(viewModel: viewModel)
+//    }
+//}

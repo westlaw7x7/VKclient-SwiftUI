@@ -12,7 +12,6 @@ struct VKclient_SwiftUIApp: App {
     
     @State var isLogin: Bool = false
     
-    
     var body: some Scene {
         WindowGroup {
             if isLogin {
@@ -21,7 +20,6 @@ struct VKclient_SwiftUIApp: App {
               LoginFromWebView(isLogin: $isLogin)
 //               LoginContentView(isLogin: $isLogin)
             }
-      
         }
     }
     

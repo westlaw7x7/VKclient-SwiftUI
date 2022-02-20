@@ -17,10 +17,14 @@ struct Response: Decodable {
     let items: [PhotosObject]
 }
 
-struct PhotosObject: Decodable {
+struct PhotosObject: Decodable, Hashable {
     var id: Int = 0
     var ownerID: Int = 0
     var sizes = Map<String, String>()
+    var serialNumber: String = ""
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(serialNumber)
+    }
     
     enum CodingKeys: String, CodingKey {
         case id

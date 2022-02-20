@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabViewVK: View {
     let friendsViewModel = UserViewModel()
+    let photoViewModel = PhotosViewModel()
     
     private let pageTitles = ["Friends", "Groups", "News"]
     @State private var selection = 0
