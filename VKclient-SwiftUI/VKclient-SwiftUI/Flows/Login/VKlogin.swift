@@ -31,7 +31,7 @@ struct VKLoginWebView: UIViewRepresentable {
             uiView.load(request)
         }
     }
-
+    
     private func buildAuthRequest() -> URLRequest? {
         var components = URLComponents()
         components.scheme = "https"
@@ -58,15 +58,14 @@ class Coordinator: NSObject, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-    
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         guard
             let url = navigationResponse.response.url,
-              url.path == "/blank.html",
-              let fragment = url.fragment
+            url.path == "/blank.html",
+            let fragment = url.fragment
         else { return decisionHandler(.allow) }
         
         let parameters = fragment
@@ -81,17 +80,16 @@ class Coordinator: NSObject, WKNavigationDelegate {
             }
         guard let token = parameters["access_token"],
               let userIdString = parameters["user_id"],
-             let _ = Int(userIdString)
-
+              let _ = Int(userIdString)
+                
         else { return decisionHandler(.allow) }
         
-
-            if token.count > 0 && (Int(userIdString) ?? 0) > 0 {
-                Auth.instance.userID = Int(userIdString) ?? 0
-                Auth.instance.token = token
-                parent.success()
-            }
-            decisionHandler(.cancel)
+        if token.count > 0 && (Int(userIdString) ?? 0) > 0 {
+            Auth.instance.userID = Int(userIdString) ?? 0
+            Auth.instance.token = token
+            parent.success()
+        }
+        decisionHandler(.cancel)
     }
 }
 

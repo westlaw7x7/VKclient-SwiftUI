@@ -8,10 +8,9 @@
 import Foundation
 
 class Auth {
-    
     static let instance = Auth()
     var token = ""
     var userID = 0
-    
+
     private init() {}
 }

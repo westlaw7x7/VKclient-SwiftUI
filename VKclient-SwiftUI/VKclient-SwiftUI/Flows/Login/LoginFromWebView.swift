@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginFromWebView: View {
+    
     @Binding var isLogin: Bool
     
     var body: some View {

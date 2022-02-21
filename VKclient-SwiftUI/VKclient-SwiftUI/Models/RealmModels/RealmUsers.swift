@@ -6,9 +6,10 @@
 //
 
 import RealmSwift
+import UIKit
 
-class RealmUsers: Object {
-    
+class RealmUsers: Object, Identifiable {
+    let uniqueID = UUID()
     @Persisted var firstName: String = ""
     @Persisted var lastName: String = ""
     @Persisted(primaryKey: true) var id: Int = 0

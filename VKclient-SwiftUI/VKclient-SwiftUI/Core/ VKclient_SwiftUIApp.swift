@@ -15,12 +15,11 @@ struct VKclient_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             if isLogin {
-            TabViewVK()
+                TabViewVK()
             } else {
-              LoginFromWebView(isLogin: $isLogin)
-//               LoginContentView(isLogin: $isLogin)
+                LoginFromWebView(isLogin: $isLogin)
+                //               LoginContentView(isLogin: $isLogin)
             }
         }
     }
-    
 }

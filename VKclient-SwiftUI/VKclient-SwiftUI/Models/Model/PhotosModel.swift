@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 struct PhotosResponse: Decodable {
     let response: Response
@@ -17,7 +18,8 @@ struct Response: Decodable {
     let items: [PhotosObject]
 }
 
-struct PhotosObject: Decodable, Hashable {
+struct PhotosObject: Decodable, Hashable, Identifiable {
+    let uniqueID = UUID()
     var id: Int = 0
     var ownerID: Int = 0
     var sizes = Map<String, String>()

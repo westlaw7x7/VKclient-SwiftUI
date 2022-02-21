@@ -13,7 +13,7 @@ struct PhotoFriendsView: View {
     
     var user: UserObject
     @ObservedObject var viewModelPhotos: PhotosViewModel
-
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -22,22 +22,20 @@ struct PhotoFriendsView: View {
         }
     }
 }
+
+struct CollectionView: View {
     
-    struct CollectionView: View {
+    private let columns = [
+        GridItem(.adaptive(minimum: 100), spacing: 15)
+    ]
+    var user: UserObject
+    @ObservedObject var viewModelPhotos: PhotosViewModel
+
+    var body: some View {
         
-        private let columns = [
-            GridItem(.adaptive(minimum: 100), spacing: 15)
-        ]
-        
-        var user: UserObject
-        @ObservedObject var viewModelPhotos: PhotosViewModel
- 
-        
-        var body: some View {
-            
-            ScrollView {
+        ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(viewModelPhotos.photos, id: \.self) { elements in
+                ForEach(viewModelPhotos.photos) { elements in
                     
                     KFImage(URL(string: elements.sizes["x"]!))
                         .resizable()
@@ -45,10 +43,10 @@ struct PhotoFriendsView: View {
                 }
             }
         }
-            .onAppear {
-                viewModelPhotos.fetchPhotos(ownerID: user.id)
-            }
+        .onAppear {
+            viewModelPhotos.fetchPhotos(ownerID: user.id)
         }
     }
+}
 
 

@@ -36,7 +36,7 @@ struct TabViewVK: View {
                     } .tag(2)
                 
             })  .navigationTitle(Text(pageTitles[selection]))
-        }                 
+        }
     }
 }
 

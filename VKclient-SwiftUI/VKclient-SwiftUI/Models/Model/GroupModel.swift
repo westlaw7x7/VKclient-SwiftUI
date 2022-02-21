@@ -40,7 +40,7 @@ struct GroupsObjects: Decodable {
 
 
 struct Group: Identifiable {
-
+    
     let name: String
     let image: UIImage!
     let id = UUID()

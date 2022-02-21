@@ -8,6 +8,7 @@
 import RealmSwift
 
 class RealmGroups: Object {
+    
     @Persisted var name: String = ""
     @Persisted(primaryKey: true) var id: Int = 0
     @Persisted var photo: String = ""

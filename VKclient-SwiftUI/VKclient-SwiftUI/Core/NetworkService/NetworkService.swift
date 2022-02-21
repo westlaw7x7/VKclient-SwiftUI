@@ -12,6 +12,7 @@ final class NetworkService {
     private let url: String = "https://api.vk.com/"
     private let apiVersion: String = "5.92"
     private let realmService = RealmService()
+    
     // MARK: Network configuration/session
     let session = URLSession.shared
     var urlConstructor: URLComponents = {
@@ -47,10 +48,7 @@ final class NetworkService {
             do {
                 let user = try JSONDecoder().decode(UserResponse.self,
                                                     from: responseData).response.items
-                let realmUsers = user.map { RealmUsers(user: $0)}
-                
                 DispatchQueue.main.async {
-                    try? self.realmService.save(items: realmUsers)
                     completion(user)
                 }
             } catch {
@@ -100,7 +98,6 @@ final class NetworkService {
         }.resume()
     }
     
-    
     func loadGroups(token: String,  completion: @escaping([GroupsObjects]) -> Void) {
         
         urlConstructor.path = "/method/groups.get"
@@ -129,11 +126,7 @@ final class NetworkService {
             do {
                 let groups = try JSONDecoder().decode(GroupsResponse.self,
                                                       from: responseData).response.items
-                
-//                let groupRealm = groups.map { RealmGroups(groups: $0) }
-                
                 DispatchQueue.main.async {
-//                    try? self.realmService.save(items: groupRealm)
                     completion(groups)
                 }
                 
@@ -143,10 +136,6 @@ final class NetworkService {
         }
         .resume()
     }
-    
-    
-    
-    
 }
 
 

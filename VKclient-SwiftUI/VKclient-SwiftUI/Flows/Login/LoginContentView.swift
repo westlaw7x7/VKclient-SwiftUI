@@ -99,7 +99,7 @@ struct LoginContentView: View {
                         self.shouldShowLogo = !isKeyboardOn
                     }
                 })
-                .frame(maxWidth: 350)
+                    .frame(maxWidth: 350)
             }
         }.onTapGesture {
             UIApplication.shared.endEditing()
@@ -111,7 +111,7 @@ struct LoginContentView: View {
         if login == "A" || password == "1" {
             isLogin = true
         } else {
-        showAlert = true
+            showAlert = true
             password = ""
         }
     }

@@ -20,14 +20,14 @@ struct GroupsView: View {
                 VStack {
                     HStack {
                         KFImage(URL(string: groups.photo))
-                        //                            Image(uiImage: group.)
                         TextBuilder {
                             Text(groups.name)
                         }
                     }
                 }
             }
-        }.onAppear {
+        }.listStyle(PlainListStyle())
+        .onAppear {
             groupsViewModel.fetchGroups()
         }
     }
