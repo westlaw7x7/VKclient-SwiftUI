@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62169C6427BED09800BD129E /* LoginFromWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62169C6327BED09800BD129E /* LoginFromWebView.swift */; };
+		621E925127C36BBB0029157F /* DetachProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E925027C36BBB0029157F /* DetachProtocol.swift */; };
 		622A250727BE64EF001E2659 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622A250627BE64EF001E2659 /* Auth.swift */; };
 		6249C2AA27BA576B00B5F4EB /* SearchGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6249C2A927BA576B00B5F4EB /* SearchGroupView.swift */; };
 		62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62505D9D27B965E1008F017B /*  VKclient_SwiftUIApp.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		62169C6327BED09800BD129E /* LoginFromWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFromWebView.swift; sourceTree = "<group>"; };
+		621E925027C36BBB0029157F /* DetachProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetachProtocol.swift; sourceTree = "<group>"; };
 		622A250627BE64EF001E2659 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		6249C2A927BA576B00B5F4EB /* SearchGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupView.swift; sourceTree = "<group>"; };
 		62505D9D27B965E1008F017B /*  VKclient_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " VKclient_SwiftUIApp.swift"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				62A8AA1827B416FC00F80EA2 /* ViewBuilder.swift */,
 				62A8AA1627B416F500F80EA2 /* ViewModifier.swift */,
+				621E925027C36BBB0029157F /* DetachProtocol.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				6249C2AA27BA576B00B5F4EB /* SearchGroupView.swift in Sources */,
 				6289555227B826B6007FC75D /* NewsView.swift in Sources */,
 				62505DA027B97A16008F017B /* PhotoFriendsView.swift in Sources */,
+				621E925127C36BBB0029157F /* DetachProtocol.swift in Sources */,
 				62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */,
 				62A8AA1927B416FC00F80EA2 /* ViewBuilder.swift in Sources */,
 				626362D027BD148100FE5636 /* NetworkService.swift in Sources */,

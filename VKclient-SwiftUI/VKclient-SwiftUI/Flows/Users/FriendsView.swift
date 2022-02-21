@@ -25,7 +25,7 @@ struct FriendsView: View {
         List() {
             ForEach(viewModel.users, id: \.self) { user in
         NavigationLink {
-            PhotoFriendsView(viewModelPhotos: viewPhotosModel, user: user)
+            PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
         } label: {
             VStack {
                         HStack {

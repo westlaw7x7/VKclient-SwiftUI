@@ -40,7 +40,6 @@ struct VKLoginWebView: UIViewRepresentable {
         components.queryItems = [
             URLQueryItem(name: "client_id", value: "7965892"),
             URLQueryItem(name: "scope", value: "336918"),
-//          SCOPE : friends, photos, wall, groups
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "response_type", value: "token"),
@@ -49,7 +48,6 @@ struct VKLoginWebView: UIViewRepresentable {
         return components.url.map { URLRequest(url: $0) }
     }
 }
-
 
 class Coordinator: NSObject, WKNavigationDelegate {
     

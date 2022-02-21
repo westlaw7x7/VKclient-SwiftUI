@@ -10,14 +10,10 @@ import QGrid
 import Kingfisher
 
 struct PhotoFriendsView: View {
-    private let items = 1 ... 3
-    private let columns = [
-        GridItem(.adaptive(minimum: 100), spacing: 15)
-    ]
     
-    @ObservedObject var viewModelPhotos: PhotosViewModel
     var user: UserObject
-    
+    @ObservedObject var viewModelPhotos: PhotosViewModel
+
     var body: some View {
         ScrollView {
             VStack {
@@ -25,19 +21,22 @@ struct PhotoFriendsView: View {
             }
         }
     }
+}
     
     struct CollectionView: View {
-        
-        var user: UserObject
-        @ObservedObject var viewModelPhotos: PhotosViewModel
-        
         
         private let columns = [
             GridItem(.adaptive(minimum: 100), spacing: 15)
         ]
         
+        var user: UserObject
+        @ObservedObject var viewModelPhotos: PhotosViewModel
+ 
+        
         var body: some View {
-            LazyVGrid(columns: columns, spacing: 15) {
+            
+            ScrollView {
+            LazyVGrid(columns: columns) {
                 ForEach(viewModelPhotos.photos, id: \.self) { elements in
                     
                     KFImage(URL(string: elements.sizes["x"]!))
@@ -45,9 +44,11 @@ struct PhotoFriendsView: View {
                         .scaledToFit()
                 }
             }
+        }
             .onAppear {
                 viewModelPhotos.fetchPhotos(ownerID: user.id)
             }
         }
     }
-}
+
+

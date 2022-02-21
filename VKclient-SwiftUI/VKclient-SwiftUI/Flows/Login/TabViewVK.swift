@@ -10,6 +10,7 @@ import SwiftUI
 struct TabViewVK: View {
     let friendsViewModel = UserViewModel()
     let photoViewModel = PhotosViewModel()
+    let groupsViewModel = GroupViewModel()
     
     private let pageTitles = ["Friends", "Groups", "News"]
     @State private var selection = 0
@@ -23,7 +24,7 @@ struct TabViewVK: View {
                         Label("Friends", systemImage: "person")
                         Text(pageTitles[0])
                     }.tag(0)
-                GroupsView()
+                GroupsView(groupsViewModel: groupsViewModel)
                     .tabItem {
                         Label("Groups", systemImage: "rectangle.3.group.bubble.left")
                         Text(pageTitles[1])
