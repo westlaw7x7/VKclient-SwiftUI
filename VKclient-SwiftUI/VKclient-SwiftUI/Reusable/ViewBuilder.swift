@@ -54,7 +54,6 @@ struct TextBuilder: View {
     var body: some View {
         content
             .font(.system(size: 14, weight: .medium, design: .serif))
-            .frame(width: 200, height: 30, alignment: .center)
     }
 }
 
