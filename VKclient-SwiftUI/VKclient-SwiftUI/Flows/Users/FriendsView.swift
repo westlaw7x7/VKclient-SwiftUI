@@ -6,50 +6,78 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct FriendsView: View {
+    @State var animationAmount = false
+    let user = UserObject()
+    let viewPhotosModel = PhotosViewModel()
+    @State var searchText = ""
+    private var searchResult: [UserObject] {
+        if searchText.isEmpty {
+            return viewModel.users
+        } else {
+            return viewModel.users.filter { user in
+                "\(user.lastName) \(user.firstName)".contains(searchText)
+            }
+            
+        }
+    }
+    @ObservedObject var viewModel: UserViewModel
     
-    @State var groupedArray: [String: [UserObject]] = [:]
-
-      @ObservedObject var viewModel: UserViewModel
-      let user = UserObject()
-      let viewPhotosModel = PhotosViewModel()
-      
-      init(viewModel: UserViewModel) {
-          self.viewModel = viewModel
-      }
+    init(viewModel: UserViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-          List() {
-              ForEach(viewModel.users) { user in
-          NavigationLink {
-              PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
-          } label: {
-              VStack {
-                          HStack {
-                              KFImage(URL(string: user.avatar))
-                              TextBuilder {
-                                  Text("\(user.firstName) \(user.lastName)")
-                              }
-                          }
-                      }
-              }
-          }
-          }.onAppear(perform: viewModel.fetchUsers)
-      }
+        NavigationView {
+            List() {
+                ForEach(searchResult, id: \.self) { user in
+                    NavigationLink {
+                        PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
+                    } label: {
+                        VStack {
+                            HStack {
+                                AvatarImage {
+                                    AsyncImage(url: URL(string: user.avatar))
+                                }
+                                .scaleEffect(animationAmount ? 1.2 : 1)
+                                    .animation(.spring(response: 0.4, dampingFraction: 0.6))
+                                    .onTapGesture {
+                                        animationAmount = true
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                            animationAmount = false
+                                        }
+                                    }
+                                    TextBuilder {
+                                    Text("\(user.firstName) \(user.lastName)")
+                                }
+                            }
+                            
+                            
+                        }
+                    }
+                }
+               
+                    
+            }.onAppear(perform: viewModel.fetchUsers)
+              
+                
+        }.searchable(text: $searchText)
+            .navigationBarHidden(true)
+    }
 }
 
-//MARK: Sections, but View doesn't update properly + navigation link isn't working.
+////MARK: Sections, but View doesn't update properly + navigation link isn't working.
+    ///
 //      var body: some View {
+//          NavigationView {
 //          List() {
-//              ForEach(groupedArray.keys.sorted(), id: \.self) { key in
+//              ForEach(viewModel.usersDict.keys.sorted(), id: \.self) { key in
 //                  Section(header: Text(key)) {
-//                  ForEach(groupedArray[key]!, id: \.self) { value in
+//                      ForEach(viewModel.usersDict[key]!) { value in
 //          NavigationLink {
 //              PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
 //          } label: {
-//
 //                          HStack {
 //                              KFImage(URL(string: value.avatar))
 //                              TextBuilder {
@@ -61,22 +89,18 @@ struct FriendsView: View {
 //                  }
 //              }
 //          }
+//
+//          } .onAppear {
+//
+//             viewModel.fetchUsers()
+//
+//              viewModel.usersDict = Dictionary(grouping: searchResult,
+//                                                  by: {$0.lastName.first?.uppercased() ?? ""}
+//                                              ).mapValues{$0.sorted(by:{ $0.lastName < $1.lastName })}
 //          }
-//              .onAppear {
-//                  viewModel.fetchUsers()
-//                  groupedArray = Dictionary(grouping: viewModel.users,
-//                                          by: {$0.lastName.first?.uppercased() ?? ""}
-//                                      ).mapValues{$0.sorted(by:{ $0.lastName < $1.lastName })}
+//          }.searchable(text: $searchText)
+//              .navigationBarHidden(true)
+//
 //              }
 //      }
-//  }
 
-    
-
-
-//struct FriendsList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let viewModel = UserViewModel()
-//        FriendsView(viewModel: viewModel)
-//    }
-//}

@@ -32,14 +32,27 @@ struct CollectionView: View {
     @ObservedObject var viewModelPhotos: PhotosViewModel
 
     var body: some View {
-        
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(viewModelPhotos.photos) { elements in
-                    
+                ForEach(viewModelPhotos.photos, id: \.self) { elements in
+            NavigationLink {
+                ExtendedPhotoView(photosViewModel: viewModelPhotos, user: user)
+            } label: {
+                
+                ZStack {
                     KFImage(URL(string: elements.sizes["x"]!))
                         .resizable()
                         .scaledToFit()
+                    VStack {
+                        Spacer()
+                    Image(systemName: "suit.heart")
+                        .font(.system(size: 45))
+                        .foregroundColor(.gray)
+                        .padding(.leading, 5)
+                }
+                }
+               
+                    }
                 }
             }
         }

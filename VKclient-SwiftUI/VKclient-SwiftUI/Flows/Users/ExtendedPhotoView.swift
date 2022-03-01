@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ExtendedPhotoView: View {
+    @ObservedObject var photosViewModel: PhotosViewModel
+    let user: UserObject
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct ExtendedPhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExtendedPhotoView()
+        GeometryReader { geometry in
+            TabView {
+                
+                ForEach(photosViewModel.photos) { photo in
+                    KFImage(URL(string: photo.sizes["x"]!))
+                        .resizable()
+                        .scaledToFill()
+                        .tag(photo)
+                }
+            }.tabViewStyle(PageTabViewStyle())
+                .frame(width: geometry.size.width, height: geometry.size.height)
+        }
     }
 }
