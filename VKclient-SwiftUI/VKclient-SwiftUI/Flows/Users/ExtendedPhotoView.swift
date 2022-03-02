@@ -11,16 +11,18 @@ import Kingfisher
 struct ExtendedPhotoView: View {
     @ObservedObject var photosViewModel: PhotosViewModel
     let user: UserObject
+    var photoIndex: Int
+    
     var body: some View {
         GeometryReader { geometry in
             TabView {
                 
-                ForEach(photosViewModel.photos) { photo in
-                    KFImage(URL(string: photo.sizes["x"]!))
+//                ForEach(photosViewModel.photos) { photo in
+                KFImage(URL(string: photosViewModel.photos[photoIndex].sizes["x"]!))
                         .resizable()
                         .scaledToFill()
-                        .tag(photo)
-                }
+//                        .tag
+//                }
             }.tabViewStyle(PageTabViewStyle())
                 .frame(width: geometry.size.width, height: geometry.size.height)
         }

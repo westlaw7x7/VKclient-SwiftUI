@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Network
 
 struct FriendsView: View {
     @State var animationAmount = false
+    
     let user = UserObject()
     let viewPhotosModel = PhotosViewModel()
     @State var searchText = ""
@@ -31,15 +33,16 @@ struct FriendsView: View {
     var body: some View {
         NavigationView {
             List() {
-                ForEach(searchResult, id: \.self) { user in
+                ForEach(searchResult.indices, id: \.self) { index in
                     NavigationLink {
-                        PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
+                        PhotoFriendsView(viewModel: viewPhotosModel, user: viewModel.users[index])
                     } label: {
                         VStack {
                             HStack {
                                 AvatarImage {
-                                    AsyncImage(url: URL(string: user.avatar))
+                                    AsyncImage(url: URL(string: searchResult[index].avatar))
                                 }
+                    
                                 .scaleEffect(animationAmount ? 1.2 : 1)
                                     .animation(.spring(response: 0.4, dampingFraction: 0.6))
                                     .onTapGesture {
@@ -49,7 +52,7 @@ struct FriendsView: View {
                                         }
                                     }
                                     TextBuilder {
-                                    Text("\(user.firstName) \(user.lastName)")
+                                        Text("\(searchResult[index].firstName) \(searchResult[index].lastName)")
                                 }
                             }
                             
