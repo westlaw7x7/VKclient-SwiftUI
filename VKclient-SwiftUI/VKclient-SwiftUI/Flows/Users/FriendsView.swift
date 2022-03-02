@@ -35,22 +35,24 @@ struct FriendsView: View {
             List() {
                 ForEach(searchResult.indices, id: \.self) { index in
                     NavigationLink {
-                        PhotoFriendsView(viewModel: viewPhotosModel, user: viewModel.users[index])
+                        PhotoFriendsView(viewModel: viewPhotosModel, user: searchResult[index])
                     } label: {
                         VStack {
                             HStack {
                                 AvatarImage {
                                     AsyncImage(url: URL(string: searchResult[index].avatar))
                                 }
-                    
                                 .scaleEffect(animationAmount ? 1.2 : 1)
                                     .animation(.spring(response: 0.4, dampingFraction: 0.6))
-                                    .onTapGesture {
-                                        animationAmount = true
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                            animationAmount = false
-                                        }
+                                   
+                                .onTapGesture {
+                                    animationAmount = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        animationAmount = false
                                     }
+                                }
+                    
+                               
                                     TextBuilder {
                                         Text("\(searchResult[index].firstName) \(searchResult[index].lastName)")
                                 }
