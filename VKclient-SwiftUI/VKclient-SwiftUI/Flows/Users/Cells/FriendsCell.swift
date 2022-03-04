@@ -10,8 +10,8 @@ import SwiftUI
 struct FriendsCell: View {
     
     @State var animationAmount = false
-    var index: Int
-    var searchResult: [UserObject]
+    let index: Int
+    let searchResult: [UserObject]
     
     var body: some View {
         VStack {

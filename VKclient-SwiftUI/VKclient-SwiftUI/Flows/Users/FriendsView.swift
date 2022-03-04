@@ -9,9 +9,9 @@ import SwiftUI
 import Network
 
 struct FriendsView: View {
-    
-    let user = UserObject()
+
     let viewPhotosModel = PhotosViewModel()
+    @ObservedObject var viewModel: UserViewModel
     
     @State var searchText = ""
     private var searchResult: [UserObject] {
@@ -24,17 +24,13 @@ struct FriendsView: View {
             
         }
     }
-    @ObservedObject var viewModel: UserViewModel
-    
-    init(viewModel: UserViewModel) {
-        self.viewModel = viewModel
-    }
+
     
     var body: some View {
         NavigationView {
             List(searchResult.indices, id: \.self) { index in
                     NavigationLink {
-                        PhotoFriendsView(viewModel: viewPhotosModel, user: searchResult[index])
+                        PhotoFriendsView(viewModel: viewPhotosModel, id: searchResult[index].id)
                     } label: {
                         FriendsCell(index: index, searchResult: searchResult)
                         }

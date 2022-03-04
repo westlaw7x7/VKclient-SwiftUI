@@ -14,6 +14,7 @@ class PhotosViewModel: ObservableObject, Identifiable {
     private let token = Auth.instance.token
     @Published var photos: [PhotosObject] = []
     
+    
    public func fetchPhotos(ownerID: Int) {
          networkService.loadPhotos(token: token, ownerID: ownerID ) { [weak self] photos in
             guard let self = self else { return }

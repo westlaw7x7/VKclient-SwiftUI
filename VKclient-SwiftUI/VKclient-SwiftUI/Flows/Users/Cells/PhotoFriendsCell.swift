@@ -14,21 +14,23 @@ struct PhotoFriendsCell: View {
     let viewModelPhotos: PhotosViewModel
     let photoIndex: Int
     
-    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             KFImage(URL(string: viewModelPhotos.photos[photoIndex].sizes["x"]!))
                 .resizable()
                 .scaledToFit()
-        
-                Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
-                    .animation(.linear, value: isPressed)
-                    .font(.system(size: 25))
-                    .onTapGesture {
-                        self.isPressed.toggle()
-                    }
-                    .foregroundColor(isPressed ? .red: .white)
             
-        }
+            Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
+                .animation(.linear, value: isPressed)
+                .font(.system(size: 25))
+                .onTapGesture {
+                    self.isPressed.toggle()
+                }
+                .foregroundColor(isPressed ? .red: .white)
+            
+        } 
     }
 }
+
+
+
