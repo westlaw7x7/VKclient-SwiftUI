@@ -25,7 +25,6 @@ struct PhotoFriendsView: View {
 
 struct CollectionView: View {
     
-    @State var isPressed = false
     private let columns = [
         GridItem(.adaptive(minimum: 100), spacing: 15)
     ]
@@ -40,21 +39,7 @@ struct CollectionView: View {
                     NavigationLink {
                         ExtendedPhotoView(photosViewModel: viewModelPhotos, user: user, photoIndex: photoIndex)
                     } label: {
-                        ZStack(alignment: .bottomTrailing) {
-                            KFImage(URL(string: viewModelPhotos.photos[photoIndex].sizes["x"]!))
-                                .resizable()
-                                .scaledToFit()
-                        
-                                Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
-                                    .animation(.linear, value: isPressed)
-                                    .font(.system(size: 25))
-                                    .onTapGesture {
-                                        self.isPressed.toggle()
-                                    }
-                                    .foregroundColor(isPressed ? .red: .white)
-                            
-                        }
-                        
+                   PhotoFriendsCell(viewModelPhotos: viewModelPhotos, photoIndex: photoIndex)
                     }
                 }
             }

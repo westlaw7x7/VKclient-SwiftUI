@@ -9,10 +9,10 @@ import SwiftUI
 import Network
 
 struct FriendsView: View {
-    @State var animationAmount = false
     
     let user = UserObject()
     let viewPhotosModel = PhotosViewModel()
+    
     @State var searchText = ""
     private var searchResult: [UserObject] {
         if searchText.isEmpty {
@@ -32,41 +32,13 @@ struct FriendsView: View {
     
     var body: some View {
         NavigationView {
-            List() {
-                ForEach(searchResult.indices, id: \.self) { index in
+            List(searchResult.indices, id: \.self) { index in
                     NavigationLink {
                         PhotoFriendsView(viewModel: viewPhotosModel, user: searchResult[index])
                     } label: {
-                        VStack {
-                            HStack {
-                                AvatarImage {
-                                    AsyncImage(url: URL(string: searchResult[index].avatar))
-                                }
-                                .scaleEffect(animationAmount ? 1.2 : 1)
-                                    .animation(.spring(response: 0.4, dampingFraction: 0.6))
-                                   
-                                .onTapGesture {
-                                    animationAmount = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        animationAmount = false
-                                    }
-                                }
-                    
-                               
-                                    TextBuilder {
-                                        Text("\(searchResult[index].firstName) \(searchResult[index].lastName)")
-                                }
-                            }
-                            
-                            
+                        FriendsCell(index: index, searchResult: searchResult)
                         }
-                    }
-                }
-               
-                    
             }.onAppear(perform: viewModel.fetchUsers)
-              
-                
         }.searchable(text: $searchText)
             .navigationBarHidden(true)
     }

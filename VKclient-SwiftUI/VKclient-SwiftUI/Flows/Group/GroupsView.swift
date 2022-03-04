@@ -19,7 +19,9 @@ struct GroupsView: View {
             } label: {
                 VStack {
                     HStack {
-                        KFImage(URL(string: groups.photo))
+                        AvatarImage{
+                            AsyncImage(url: URL(string: groups.photo))
+                        }
                         TextBuilder {
                             Text(groups.name)
                         }
