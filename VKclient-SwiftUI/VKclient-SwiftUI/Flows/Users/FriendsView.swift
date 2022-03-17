@@ -9,8 +9,7 @@ import SwiftUI
 import Network
 
 struct FriendsView: View {
-
-    let viewPhotosModel = PhotosViewModel()
+    
     @ObservedObject var viewModel: UserViewModel
     
     @State var searchText = ""
@@ -29,11 +28,11 @@ struct FriendsView: View {
     var body: some View {
         NavigationView {
             List(searchResult.indices, id: \.self) { index in
-                    NavigationLink {
-                        PhotoFriendsView(viewModel: viewPhotosModel, id: searchResult[index].id)
-                    } label: {
+//                    NavigationLink {
+//                        PhotoFriendsView(viewModel: viewPhotosModel, id: searchResult[index].id)
+//                    } label: {
                         FriendsCell(index: index, searchResult: searchResult)
-                        }
+//                        }
             }.onAppear(perform: viewModel.fetchUsers)
         }.searchable(text: $searchText)
             .navigationBarHidden(true)
