@@ -11,11 +11,11 @@ import SwiftUI
 struct vkApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @State var isLogin: Bool = false
-
+    
     var body: some Scene {
         WindowGroup {
             if isLogin {
-                TabBarCoordinatorView()
+                TabViewVK()
             } else {
                 LoginFromWebView(isLogin: $isLogin)
             }

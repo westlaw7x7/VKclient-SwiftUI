@@ -10,14 +10,12 @@ import Kingfisher
 
 struct GroupsView: View {
     @ObservedObject var groupsViewModel: GroupViewModel
-//    let groupsViewModel: GroupViewModel
-//    let coordinator: CoordinatorObject
-    
+
     var body: some View {
         List(groupsViewModel.detachedGroups, id: \.self) { groups in
-//            NavigationLink {
-//                SearchGroupView()
-//            } label: {
+            NavigationLink {
+                SearchGroupView()
+            } label: {
                 VStack {
                     HStack {
                         AvatarImage{
@@ -27,19 +25,11 @@ struct GroupsView: View {
                             Text(groups.name)
                         }
                     }
-//                }
             }
-        }.listStyle(PlainListStyle())
-        .onAppear {
-            groupsViewModel.fetchGroups()
         }
+        }.listStyle(PlainListStyle())
+            .onAppear {
+                groupsViewModel.fetchGroups()
     }
 }
-
-
-//struct GroupsList_Previews: PreviewProvider {
-//    
-//    static var previews: some View {
-//        GroupsView(groupsViewModel: GroupViewModel)
-//    }
-//}
+}

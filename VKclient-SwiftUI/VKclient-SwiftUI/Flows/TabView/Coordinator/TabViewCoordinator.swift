@@ -67,21 +67,21 @@ struct TabBarElement: TabBarElementView {
 
 struct UITabBarWrapper: View {
     var controllers: [UIHostingController<TabBarElement>]
-
+    
     init(_ elements: [TabBarElement]) {
         controllers = elements.enumerated().map {
             let hostingController = UIHostingController(rootView: $1)
-
+            
             hostingController.tabBarItem = UITabBarItem(
                 title: $1.tabBarElementItem.title,
                 image: UIImage(systemName: $1.tabBarElementItem.systemImageName),
                 tag: $0
             )
-
+            
             return hostingController
         }
     }
-
+    
     var body: some View {
         TabBarController(controllers: self.controllers)
     }

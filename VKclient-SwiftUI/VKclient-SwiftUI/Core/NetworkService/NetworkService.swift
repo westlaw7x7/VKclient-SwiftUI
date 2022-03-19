@@ -22,7 +22,6 @@ final class NetworkService {
         return constructor
     }()
     
-    
     func loadUsers(token: String, completion: @escaping([UserObject]) -> Void) {
         
         urlConstructor.path = "/method/friends.get"
@@ -44,7 +43,7 @@ final class NetworkService {
             guard
                 error == nil,
                 let responseData = responseData else
-                { return completion([])}
+            { return completion([])}
             do {
                 let user = try JSONDecoder().decode(UserResponse.self,
                                                     from: responseData).response.items
@@ -81,7 +80,7 @@ final class NetworkService {
             guard
                 error == nil,
                 let responseData = responseData else
-                { return completion([])}
+            { return completion([])}
             do {
                 let photos = try JSONDecoder().decode(PhotosResponse.self,
                                                       from: responseData).response.items

@@ -17,7 +17,7 @@ struct TabBarCoordinatorView: View {
         UITabBarWrapper([
             TabBarElement(tabBarElementItem: .init(title: "Friends", systemImageName: "person"), {
                 NavigationView {
-                    FriendsView(viewModel: friendsViewModel )
+                    FriendsView(viewModel: friendsViewModel)
                 }
             }),
             

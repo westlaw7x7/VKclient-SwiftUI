@@ -10,8 +10,9 @@ import Network
 
 struct FriendsView: View {
     
+    let viewPhotosModel = PhotosViewModel()
+    let user = UserObject()
     @ObservedObject var viewModel: UserViewModel
-    
     @State var searchText = ""
     private var searchResult: [UserObject] {
         if searchText.isEmpty {
@@ -20,22 +21,19 @@ struct FriendsView: View {
             return viewModel.users.filter { user in
                 "\(user.lastName) \(user.firstName)".contains(searchText)
             }
-            
         }
     }
-
     
     var body: some View {
         NavigationView {
             List(searchResult.indices, id: \.self) { index in
-//                    NavigationLink {
-//                        PhotoFriendsView(viewModel: viewPhotosModel, id: searchResult[index].id)
-//                    } label: {
-                        FriendsCell(index: index, searchResult: searchResult)
-//                        }
+                NavigationLink {
+                    PhotoFriendsView(viewModel: viewPhotosModel, user: searchResult[index])
+                } label: {
+                    FriendsCell(searchResult: searchResult[index])
+                }
             }.onAppear(perform: viewModel.fetchUsers)
         }.searchable(text: $searchText)
-            .navigationBarHidden(true)
     }
 }
 

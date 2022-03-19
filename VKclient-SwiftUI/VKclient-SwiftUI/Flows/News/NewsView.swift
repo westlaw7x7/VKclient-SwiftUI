@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NewsView: View {
-//    let coordinator: CoordinatorObject
     var body: some View {
         Text("Some News")
     }

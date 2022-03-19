@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct ExtendedPhotoView: View {
-    
     @ObservedObject var photosViewModel: PhotosViewModel
     
     var photoIndex: Int
@@ -17,11 +16,11 @@ struct ExtendedPhotoView: View {
     var body: some View {
         GeometryReader { geometry in
             TabView {
-                
+//                ForEach(photosViewModel.photos.indices, id: \.self) { index in
                 KFImage(URL(string: photosViewModel.photos[photoIndex].sizes["x"]!))
                     .resizable()
                     .scaledToFill()
-                
+//                }
             }.tabViewStyle(PageTabViewStyle())
                 .frame(width: geometry.size.width, height: geometry.size.height)
         }

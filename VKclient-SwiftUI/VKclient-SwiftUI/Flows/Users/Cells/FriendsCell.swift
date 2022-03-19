@@ -10,15 +10,14 @@ import SwiftUI
 struct FriendsCell: View {
     
     @State var animationAmount = false
-    let index: Int
-    let searchResult: [UserObject]
+    
+    let searchResult: UserObject
     
     var body: some View {
         VStack {
             HStack {
                 AvatarImage {
-                    AsyncImage(url: URL(string: searchResult[index].avatar))
-                    
+                    AsyncImage(url: URL(string: searchResult.avatar))
                 }
                 .onTapGesture {
                     animationAmount = true
@@ -26,14 +25,12 @@ struct FriendsCell: View {
                         animationAmount = false
                     }
                 }
-                
                 TextBuilder {
-                    Text("\(searchResult[index].firstName) \(searchResult[index].lastName)")
+                    Text("\(searchResult.firstName) \(searchResult.lastName)")
                 }
             }
         }.scaleEffect(animationAmount ? 1.2 : 1)
             .animation(.spring(response: 0.4, dampingFraction: 0.6))
-        
     }
 }
 
