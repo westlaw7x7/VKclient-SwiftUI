@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabViewVK: View {
+    @State private var searchText = ""
     let friendsViewModel = UserViewModel()
     let photoViewModel = PhotosViewModel()
     let groupsViewModel = GroupViewModel()
@@ -36,6 +37,7 @@ struct TabViewVK: View {
                     } .tag(2)
                 
             })  .navigationTitle(Text(pageTitles[selection]))
+                
         }
     }
 }

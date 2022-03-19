@@ -6,20 +6,14 @@
 //
 
 import SwiftUI
-import QGrid
-import Kingfisher
 
 struct PhotoFriendsView: View {
     
-    var user: UserObject
-    @ObservedObject var viewModelPhotos: PhotosViewModel
+    @ObservedObject var viewModel: PhotosViewModel
+    let id: Int
     
     var body: some View {
-        ScrollView {
-            VStack {
-                CollectionView(user: user, viewModelPhotos: viewModelPhotos)
-            }
-        }
+        CollectionView(viewModelPhotos: viewModel, id: id)
     }
 }
 
@@ -28,25 +22,28 @@ struct CollectionView: View {
     private let columns = [
         GridItem(.adaptive(minimum: 100), spacing: 15)
     ]
-    var user: UserObject
-    @ObservedObject var viewModelPhotos: PhotosViewModel
-
+    
+    let viewModelPhotos: PhotosViewModel
+    let id: Int
+    
     var body: some View {
-        
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(viewModelPhotos.photos) { elements in
-                    
-                    KFImage(URL(string: elements.sizes["x"]!))
-                        .resizable()
-                        .scaledToFit()
+                ForEach(viewModelPhotos.photos.indices, id: \.self) { photoIndex in
+                    NavigationLink {
+                        ExtendedPhotoView(photosViewModel: viewModelPhotos, photoIndex: photoIndex)
+                    } label: {
+                        PhotoFriendsCell(viewModelPhotos: viewModelPhotos, photoIndex: photoIndex)
+                    }
                 }
             }
+        }.onAppear {
+            viewModelPhotos.fetchPhotos(ownerID: id)
         }
-        .onAppear {
-            viewModelPhotos.fetchPhotos(ownerID: user.id)
-        }
+        
+        
     }
 }
+
 
 

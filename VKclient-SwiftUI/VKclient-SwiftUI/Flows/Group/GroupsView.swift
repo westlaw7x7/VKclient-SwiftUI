@@ -9,22 +9,25 @@ import SwiftUI
 import Kingfisher
 
 struct GroupsView: View {
-    
-    let groupsViewModel: GroupViewModel
+    @ObservedObject var groupsViewModel: GroupViewModel
+//    let groupsViewModel: GroupViewModel
+//    let coordinator: CoordinatorObject
     
     var body: some View {
         List(groupsViewModel.detachedGroups, id: \.self) { groups in
-            NavigationLink {
-                SearchGroupView()
-            } label: {
+//            NavigationLink {
+//                SearchGroupView()
+//            } label: {
                 VStack {
                     HStack {
-                        KFImage(URL(string: groups.photo))
+                        AvatarImage{
+                            AsyncImage(url: URL(string: groups.photo))
+                        }
                         TextBuilder {
                             Text(groups.name)
                         }
                     }
-                }
+//                }
             }
         }.listStyle(PlainListStyle())
         .onAppear {

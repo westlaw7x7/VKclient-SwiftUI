@@ -8,17 +8,16 @@
 import SwiftUI
 
 @main
-struct VKclient_SwiftUIApp: App {
-    
+struct vkApp: App {
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @State var isLogin: Bool = false
-    
+
     var body: some Scene {
         WindowGroup {
             if isLogin {
-                TabViewVK()
+                TabBarCoordinatorView()
             } else {
                 LoginFromWebView(isLogin: $isLogin)
-                //               LoginContentView(isLogin: $isLogin)
             }
         }
     }
