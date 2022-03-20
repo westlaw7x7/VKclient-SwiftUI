@@ -10,26 +10,30 @@ import Kingfisher
 
 struct GroupsView: View {
     @ObservedObject var groupsViewModel: GroupViewModel
+    @State var searchText = ""
+    private var searchResult: [RealmGroups] {
+        if searchText.isEmpty {
+            return groupsViewModel.detachedGroups
+        } else {
+            return groupsViewModel.detachedGroups.filter { groups in
+                "\(groups.name)".contains(searchText)
+            }
+        }
+    }
 
     var body: some View {
-        List(groupsViewModel.detachedGroups, id: \.self) { groups in
+        NavigationView {
+        List(searchResult, id: \.self) { groups in
             NavigationLink {
                 SearchGroupView()
             } label: {
-                VStack {
-                    HStack {
-                        AvatarImage{
-                            AsyncImage(url: URL(string: groups.photo))
-                        }
-                        TextBuilder {
-                            Text(groups.name)
-                        }
-                    }
+                GroupsCell(groups: groups)
             }
-        }
         }.listStyle(PlainListStyle())
             .onAppear {
                 groupsViewModel.fetchGroups()
+            }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .navigationBarTitleDisplayMode(.large)
     }
 }
 }

@@ -13,9 +13,9 @@ struct PhotoFriendsView: View {
     @ObservedObject var viewModel: PhotosViewModel
     let user: UserObject
     private let columns = [
-        GridItem(.flexible(minimum: 0, maximum: .infinity)),
-        GridItem(.flexible(minimum: 0, maximum: .infinity)),
-        GridItem(.flexible(minimum: 0, maximum: .infinity))
+        GridItem(.flexible(minimum: 100, maximum: .infinity)),
+        GridItem(.flexible(minimum: 100, maximum: .infinity)),
+        GridItem(.flexible(minimum: 100, maximum: .infinity))
     ]
     
     var body: some View {

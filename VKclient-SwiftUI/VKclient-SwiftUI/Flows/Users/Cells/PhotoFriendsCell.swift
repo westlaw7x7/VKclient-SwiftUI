@@ -28,7 +28,8 @@ struct PhotoFriendsCell: View {
                 KFImage(Foundation.URL(string: URL))
                     .cancelOnDisappear(true)
                     .resizable()
-//                    .frame(width: proxy.size.width)
+                    .scaledToFill()
+
                 Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
                     .animation(.linear, value: isPressed)
                     .font(.system(size: 25))

@@ -9,14 +9,16 @@ import SwiftUI
 import Kingfisher
 
 struct ExtendedPhotoView: View {
-    @ObservedObject var photosViewModel: PhotosViewModel
     
+    @ObservedObject var photosViewModel: PhotosViewModel
+
     var photoIndex: Int
     
     var body: some View {
         GeometryReader { geometry in
             TabView {
 //                ForEach(photosViewModel.photos.indices, id: \.self) { index in
+
                 KFImage(URL(string: photosViewModel.photos[photoIndex].sizes["x"]!))
                     .resizable()
                     .scaledToFill()

@@ -33,7 +33,11 @@ struct FriendsView: View {
                     FriendsCell(searchResult: searchResult[index])
                 }
             }.onAppear(perform: viewModel.fetchUsers)
-        }.searchable(text: $searchText)
+                .listStyle(.plain)
+        }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+        
+            
+           
     }
 }
 
