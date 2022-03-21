@@ -38,7 +38,6 @@ struct GroupsObjects: Decodable {
     }
 }
 
-
 struct Group: Identifiable {
     
     let name: String

@@ -34,6 +34,10 @@
 		626362D627BD20C400FE5636 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626362D527BD20C400FE5636 /* RealmService.swift */; };
 		6289555027B821A7007FC75D /* TabViewVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6289554F27B821A7007FC75D /* TabViewVK.swift */; };
 		6289555227B826B6007FC75D /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6289555127B826B6007FC75D /* NewsView.swift */; };
+		628ADB5A27E87BAD0051B469 /* SelectionRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628ADB5927E87BAD0051B469 /* SelectionRectangle.swift */; };
+		628ADB5C27E8DAAF0051B469 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628ADB5B27E8DAAF0051B469 /* ButtonStyle.swift */; };
+		628ADB5E27E8E1DE0051B469 /* SearchGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628ADB5D27E8E1DE0051B469 /* SearchGroupModel.swift */; };
+		628ADB6027E8E20F0051B469 /* SearchGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628ADB5F27E8E20F0051B469 /* SearchGroupViewModel.swift */; };
 		629398B027B0218200A6FDD9 /* LoginContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629398AF27B0218200A6FDD9 /* LoginContentView.swift */; };
 		629398B227B0218300A6FDD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 629398B127B0218300A6FDD9 /* Assets.xcassets */; };
 		629398B527B0218300A6FDD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 629398B427B0218300A6FDD9 /* Preview Assets.xcassets */; };
@@ -72,6 +76,10 @@
 		626362D527BD20C400FE5636 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		6289554F27B821A7007FC75D /* TabViewVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewVK.swift; sourceTree = "<group>"; };
 		6289555127B826B6007FC75D /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		628ADB5927E87BAD0051B469 /* SelectionRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionRectangle.swift; sourceTree = "<group>"; };
+		628ADB5B27E8DAAF0051B469 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		628ADB5D27E8E1DE0051B469 /* SearchGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupModel.swift; sourceTree = "<group>"; };
+		628ADB5F27E8E20F0051B469 /* SearchGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupViewModel.swift; sourceTree = "<group>"; };
 		629398AA27B0218200A6FDD9 /* VKclient-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VKclient-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		629398AF27B0218200A6FDD9 /* LoginContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContentView.swift; sourceTree = "<group>"; };
 		629398B127B0218300A6FDD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +136,7 @@
 			children = (
 				6259091127D2071A00F0FDEA /* PhotoFriendsCell.swift */,
 				6259090F27D203B200F0FDEA /* FriendsCell.swift */,
+				628ADB5927E87BAD0051B469 /* SelectionRectangle.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -275,6 +284,7 @@
 				62A8AA1827B416FC00F80EA2 /* ViewBuilder.swift */,
 				62A8AA1627B416F500F80EA2 /* ViewModifier.swift */,
 				621E925027C36BBB0029157F /* DetachProtocol.swift */,
+				628ADB5B27E8DAAF0051B469 /* ButtonStyle.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -285,6 +295,7 @@
 				626362BF27BD0E1F00FE5636 /* GroupViewModel.swift */,
 				626362D327BD15D000FE5636 /* UserViewModel.swift */,
 				62C4FD0B27C1597900FEBFA9 /* PhotosViewModel.swift */,
+				628ADB5F27E8E20F0051B469 /* SearchGroupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -296,6 +307,7 @@
 				626362C327BD101900FE5636 /* PhotosModel.swift */,
 				62A8AA1327B416B800F80EA2 /* GroupModel.swift */,
 				626362C127BD100800FE5636 /* NewsModel.swift */,
+				628ADB5D27E8E1DE0051B469 /* SearchGroupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,10 +406,12 @@
 				62C4FD0C27C1597900FEBFA9 /* PhotosViewModel.swift in Sources */,
 				6259091227D2071A00F0FDEA /* PhotoFriendsCell.swift in Sources */,
 				62F2AC1227E33DEA00AC7F3E /* TabBarCoordinatorView.swift in Sources */,
+				628ADB5E27E8E1DE0051B469 /* SearchGroupModel.swift in Sources */,
 				62F2AC0C27E32A0E00AC7F3E /* AppDelegate.swift in Sources */,
 				626362C727BD108F00FE5636 /* RealmGroups.swift in Sources */,
 				626362D627BD20C400FE5636 /* RealmService.swift in Sources */,
 				62A8AA1427B416B800F80EA2 /* GroupModel.swift in Sources */,
+				628ADB5C27E8DAAF0051B469 /* ButtonStyle.swift in Sources */,
 				6249C2AA27BA576B00B5F4EB /* SearchGroupView.swift in Sources */,
 				6289555227B826B6007FC75D /* NewsView.swift in Sources */,
 				621F9CF227E792D600F3F5AC /* GroupsCell.swift in Sources */,
@@ -406,6 +420,7 @@
 				62505D9E27B965E1008F017B /*  VKclient_SwiftUIApp.swift in Sources */,
 				62A8AA1927B416FC00F80EA2 /* ViewBuilder.swift in Sources */,
 				626362D027BD148100FE5636 /* NetworkService.swift in Sources */,
+				628ADB6027E8E20F0051B469 /* SearchGroupViewModel.swift in Sources */,
 				626362C027BD0E1F00FE5636 /* GroupViewModel.swift in Sources */,
 				626362C227BD100800FE5636 /* NewsModel.swift in Sources */,
 				626362D227BD14D000FE5636 /* VKlogin.swift in Sources */,
@@ -413,6 +428,7 @@
 				62A8AA1227B416B000F80EA2 /* UserModel.swift in Sources */,
 				62A8AA1727B416F500F80EA2 /* ViewModifier.swift in Sources */,
 				6289555027B821A7007FC75D /* TabViewVK.swift in Sources */,
+				628ADB5A27E87BAD0051B469 /* SelectionRectangle.swift in Sources */,
 				62F2AC0E27E3373C00AC7F3E /* TabViewCoordinator.swift in Sources */,
 				62CC03B327C292060077CA6F /* ExtendedPhotoView.swift in Sources */,
 				626362C927BD10B200FE5636 /* RealmPhotos.swift in Sources */,

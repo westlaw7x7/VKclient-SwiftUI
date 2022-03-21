@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 final class NetworkService {
     
     private let url: String = "https://api.vk.com/"
@@ -135,6 +135,48 @@ final class NetworkService {
         }
         .resume()
     }
+    
+    func SearchForGroups(token: String,
+                            search: String,
+                            completion: @escaping ([SearchedObjects]) -> Void)
+       {
+ 
+           urlConstructor.path = "/method/groups.search"
+           urlConstructor.queryItems = [
+               URLQueryItem(name: "access_token", value: token),
+               URLQueryItem(name: "sort", value: "6"),
+               URLQueryItem(name: "type", value: "group"),
+               URLQueryItem(name: "q", value: search),
+               URLQueryItem(name: "count", value: "20"),
+               URLQueryItem(name: "v", value: "5.92"),
+           ]
+           
+           guard let url = urlConstructor.url else { return completion([])}
+           var request = URLRequest(url: url)
+           request.timeoutInterval = 50.0
+           request.setValue("", forHTTPHeaderField: "Token")
+           
+           session.dataTask(with: request) { responseData, urlResponse, error in
+               if let response = urlResponse as? HTTPURLResponse {
+                   print(response.statusCode)
+               }
+               guard
+                   error == nil,
+                   let responseData = responseData
+               else { return completion([]) }
+               do {
+                   let user = try JSONDecoder().decode(SearchResponse.self,
+                                                       from: responseData).response.items
+                   DispatchQueue.main.async {
+                       completion(user)
+                       print(user)
+                   }
+               } catch {
+                   print(error)
+               }
+           }
+           .resume()
+       }
 }
 
 

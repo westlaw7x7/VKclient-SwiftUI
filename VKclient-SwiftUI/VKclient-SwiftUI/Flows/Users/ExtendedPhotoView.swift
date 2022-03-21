@@ -12,14 +12,15 @@ struct ExtendedPhotoView: View {
     
     @ObservedObject var photosViewModel: PhotosViewModel
 
-    var photoIndex: Int
+   @Binding var photoIndex: Int?
     
     var body: some View {
         GeometryReader { geometry in
             TabView {
-//                ForEach(photosViewModel.photos.indices, id: \.self) { index in
+//                ForEach(photosViewModel.photos, id: \.self) { photo in
 
-                KFImage(URL(string: photosViewModel.photos[photoIndex].sizes["x"]!))
+                KFImage(URL(string: photosViewModel.photos[photoIndex!].sizes["x"]!))
+//                    KFImage(URL(string: photo.sizes["x"]!))
                     .resizable()
                     .scaledToFill()
 //                }

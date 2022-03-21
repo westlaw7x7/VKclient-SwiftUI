@@ -11,6 +11,7 @@ import Kingfisher
 struct GroupsView: View {
     @ObservedObject var groupsViewModel: GroupViewModel
     @State var searchText = ""
+    @State var isTapped: Bool = false
     private var searchResult: [RealmGroups] {
         if searchText.isEmpty {
             return groupsViewModel.detachedGroups
@@ -20,20 +21,34 @@ struct GroupsView: View {
             }
         }
     }
-
+    
     var body: some View {
-        NavigationView {
-        List(searchResult, id: \.self) { groups in
-            NavigationLink {
-                SearchGroupView()
-            } label: {
-                GroupsCell(groups: groups)
+        VStack {
+            HStack {
+                NavigationView {
+                    List(searchResult, id: \.self) { groups in
+                        GroupsCell(groups: groups)
+                    }.listStyle(PlainListStyle())
+                        .onAppear {
+                            groupsViewModel.fetchGroups()
+                        }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                        .navigationBarTitleDisplayMode(.large)
+                        .toolbar {
+                            NavigationLink {
+                               SearchGroupView(viewModel: SearchGroupViewModel())
+                            } label: {
+                                Image(systemName: "plus.rectangle.on.rectangle")
+                                    .frame(width: 120, height: 50)
+                            }
+                        }
+                }
             }
-        }.listStyle(PlainListStyle())
-            .onAppear {
-                groupsViewModel.fetchGroups()
-            }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-                .navigationBarTitleDisplayMode(.large)
+        }
     }
 }
+
+struct GroupsView_Previews: PreviewProvider {
+    static var previews: some View {
+        GroupsView(groupsViewModel: GroupViewModel())
+    }
 }
