@@ -28,16 +28,16 @@ struct PhotoFriendsCell: View {
         GeometryReader { proxy in
             VStack {
                 ZStack(alignment: .bottomTrailing) {
-                KFImage(Foundation.URL(string: URL))
-                    .resizable()
+                    KFImage(Foundation.URL(string: URL))
+                        .resizable()
                     
-                Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
-                    .animation(.linear, value: isPressed)
-                    .font(.system(size: 25))
-                    .onTapGesture {
-                        self.isPressed.toggle()
-                    }
-                    .foregroundColor(isPressed ? .red: .white)
+                    Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
+                        .animation(.linear, value: isPressed)
+                        .font(.system(size: 25))
+                        .onTapGesture {
+                            self.isPressed.toggle()
+                        }
+                        .foregroundColor(isPressed ? .red: .white)
                 }
             }.preference(key: PhotosHeightPreferenceKey.self, value: proxy.size.width)
                 .anchorPreference(key: PhotosAnchorPreferenceKey.self, value: .bounds) {
@@ -45,7 +45,7 @@ struct PhotoFriendsCell: View {
                 }
                 .onTapGesture(count: 2, perform: {
                     if index == self.selection {
-                    self.isSelected = true
+                        self.isSelected = true
                     }
                 })
                 .onTapGesture {
@@ -53,31 +53,6 @@ struct PhotoFriendsCell: View {
                         self.selection = index
                     }
                 }
-        
         }
     }
 }
-
-
-//    var body: some View {
-//
-//                if let images = viewModelPhotos.photos[photoIndex].sizes["x"] {
-//                    KFImage(URL(string: images))
-////                AsyncImage(url: URL(string: images )) { image in
-////                    image
-//                        .resizable()
-//                        .scaledToFit()
-//                }
-//
-//            Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
-//                .animation(.linear, value: isPressed)
-//                .font(.system(size: 25))
-//                .onTapGesture {
-//                    self.isPressed.toggle()
-//                }
-//                .foregroundColor(isPressed ? .red: .white)
-//    }
-
-
-
-

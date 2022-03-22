@@ -10,10 +10,10 @@ import Network
 
 struct FriendsView: View {
     
-    let viewPhotosModel = PhotosViewModel()
-    let user = UserObject()
     @ObservedObject var viewModel: UserViewModel
     @State var searchText = ""
+    let viewPhotosModel = PhotosViewModel()
+    let user = UserObject()
     private var searchResult: [UserObject] {
         if searchText.isEmpty {
             return viewModel.users
@@ -35,47 +35,5 @@ struct FriendsView: View {
             }.onAppear(perform: viewModel.fetchUsers)
                 .listStyle(.plain)
         }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-
-        
-            
-           
     }
 }
-
-////MARK: Sections, but View doesn't update properly + navigation link isn't working.
-    ///
-//      var body: some View {
-//          NavigationView {
-//          List() {
-//              ForEach(viewModel.usersDict.keys.sorted(), id: \.self) { key in
-//                  Section(header: Text(key)) {
-//                      ForEach(viewModel.usersDict[key]!) { value in
-//          NavigationLink {
-//              PhotoFriendsView(user: user, viewModelPhotos: viewPhotosModel)
-//          } label: {
-//                          HStack {
-//                              KFImage(URL(string: value.avatar))
-//                              TextBuilder {
-//                                  Text("\(value.firstName) \(value.lastName)")
-//                              }
-//                          }
-//                          }
-//
-//                  }
-//              }
-//          }
-//
-//          } .onAppear {
-//
-//             viewModel.fetchUsers()
-//
-//              viewModel.usersDict = Dictionary(grouping: searchResult,
-//                                                  by: {$0.lastName.first?.uppercased() ?? ""}
-//                                              ).mapValues{$0.sorted(by:{ $0.lastName < $1.lastName })}
-//          }
-//          }.searchable(text: $searchText)
-//              .navigationBarHidden(true)
-//
-//              }
-//      }
-

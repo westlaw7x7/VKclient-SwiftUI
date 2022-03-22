@@ -10,7 +10,6 @@ import SwiftUI
 struct FriendsCell: View {
     
     @State var animationAmount = false
-    
     let searchResult: UserObject
     
     var body: some View {
