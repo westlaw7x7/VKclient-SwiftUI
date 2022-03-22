@@ -10,36 +10,45 @@ import Kingfisher
 
 struct GroupsView: View {
     @ObservedObject var groupsViewModel: GroupViewModel
-//    let groupsViewModel: GroupViewModel
-//    let coordinator: CoordinatorObject
+    @State var searchText = ""
+    @State var isTapped: Bool = false
+    private var searchResult: [RealmGroups] {
+        if searchText.isEmpty {
+            return groupsViewModel.detachedGroups
+        } else {
+            return groupsViewModel.detachedGroups.filter { groups in
+                "\(groups.name)".contains(searchText)
+            }
+        }
+    }
     
     var body: some View {
-        List(groupsViewModel.detachedGroups, id: \.self) { groups in
-//            NavigationLink {
-//                SearchGroupView()
-//            } label: {
-                VStack {
-                    HStack {
-                        AvatarImage{
-                            AsyncImage(url: URL(string: groups.photo))
+        VStack {
+            HStack {
+                NavigationView {
+                    List(searchResult, id: \.self) { groups in
+                        GroupsCell(groups: groups)
+                    }.listStyle(PlainListStyle())
+                        .onAppear {
+                            groupsViewModel.fetchGroups()
+                        }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                        .navigationBarTitleDisplayMode(.large)
+                        .toolbar {
+                            NavigationLink {
+                               SearchGroupView(viewModel: SearchGroupViewModel())
+                            } label: {
+                                Image(systemName: "plus.rectangle.on.rectangle")
+                                    .frame(width: 120, height: 50)
+                            }
                         }
-                        TextBuilder {
-                            Text(groups.name)
-                        }
-                    }
-//                }
+                }
             }
-        }.listStyle(PlainListStyle())
-        .onAppear {
-            groupsViewModel.fetchGroups()
         }
     }
 }
 
-
-//struct GroupsList_Previews: PreviewProvider {
-//    
-//    static var previews: some View {
-//        GroupsView(groupsViewModel: GroupViewModel)
-//    }
-//}
+struct GroupsView_Previews: PreviewProvider {
+    static var previews: some View {
+        GroupsView(groupsViewModel: GroupViewModel())
+    }
+}

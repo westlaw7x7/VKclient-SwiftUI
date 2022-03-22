@@ -1,22 +1,22 @@
 //
-//  FriendsCell.swift
+//  GroupsCell.swift
 //  VKclient-SwiftUI
 //
-//  Created by Alexander Grigoryev on 04.03.2022.
+//  Created by Alexander Grigoryev on 20.03.2022.
 //
 
 import SwiftUI
 
-struct FriendsCell: View {
+struct GroupsCell: View {
     
     @State var animationAmount = false
-    let searchResult: UserObject
+    let groups: RealmGroups
     
     var body: some View {
         VStack {
             HStack {
-                AvatarImage {
-                    AsyncImage(url: URL(string: searchResult.avatar))
+                AvatarImage{
+                    AsyncImage(url: URL(string: groups.photo))
                 }
                 .onTapGesture {
                     animationAmount = true
@@ -25,12 +25,10 @@ struct FriendsCell: View {
                     }
                 }
                 TextBuilder {
-                    Text("\(searchResult.firstName) \(searchResult.lastName)")
+                    Text(groups.name)
                 }
             }
-        }.scaleEffect(animationAmount ? 1.2 : 1)
+    }.scaleEffect(animationAmount ? 1.2 : 1)
             .animation(.spring(response: 0.4, dampingFraction: 0.6))
     }
 }
-
-

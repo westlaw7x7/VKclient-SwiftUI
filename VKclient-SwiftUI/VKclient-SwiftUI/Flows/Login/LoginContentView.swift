@@ -99,7 +99,7 @@ struct LoginContentView: View {
                         self.shouldShowLogo = !isKeyboardOn
                     }
                 })
-                    .frame(maxWidth: 350)
+                .frame(maxWidth: 350)
             }
         }.onTapGesture {
             UIApplication.shared.endEditing()
@@ -115,7 +115,6 @@ struct LoginContentView: View {
             password = ""
         }
     }
-    
 }
 
 extension UIApplication {

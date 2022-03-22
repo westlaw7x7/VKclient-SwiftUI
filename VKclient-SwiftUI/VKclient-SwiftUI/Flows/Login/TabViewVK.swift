@@ -17,9 +17,9 @@ struct TabViewVK: View {
     @State private var selection = 0
     
     var body: some View {
-        
         NavigationView {
             TabView(selection: $selection, content: {
+                
                 FriendsView(viewModel: friendsViewModel)
                     .tabItem {
                         Label("Friends", systemImage: "person")
@@ -36,8 +36,7 @@ struct TabViewVK: View {
                         Text(pageTitles[2])
                     } .tag(2)
                 
-            })  .navigationTitle(Text(pageTitles[selection]))
-                
+            }).navigationTitle(Text(pageTitles[selection]))
         }
     }
 }

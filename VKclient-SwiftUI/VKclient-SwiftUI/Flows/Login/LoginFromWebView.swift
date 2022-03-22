@@ -17,15 +17,3 @@ struct LoginFromWebView: View {
         }
     }
 }
-
-//final class LoginViewModel: ObservableObject, View {
-//
-//    @Published var isUserLoggedIn = false
-//
-//    var body: some View {
-//        VKLoginWebView {
-//            self.isUserLoggedIn = true
-//        }
-//    }
-//
-//}

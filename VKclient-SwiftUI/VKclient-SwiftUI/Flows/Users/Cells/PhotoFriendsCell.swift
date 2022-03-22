@@ -8,29 +8,51 @@
 import SwiftUI
 import Kingfisher
 
-struct PhotoFriendsCell: View {
+struct PhotosHeightPreferenceKey: PreferenceKey {
     
-    @State var isPressed = false
-    let viewModelPhotos: PhotosViewModel
-    let photoIndex: Int
+    static var defaultValue: CGFloat = 0
     
-    var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            KFImage(URL(string: viewModelPhotos.photos[photoIndex].sizes["x"]!))
-                .resizable()
-                .scaledToFit()
-            
-            Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
-                .animation(.linear, value: isPressed)
-                .font(.system(size: 25))
-                .onTapGesture {
-                    self.isPressed.toggle()
-                }
-                .foregroundColor(isPressed ? .red: .white)
-            
-        } 
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
     }
 }
 
-
-
+struct PhotoFriendsCell: View {
+    @Binding var isSelected: Bool
+    @State var isPressed = false
+    @Binding var selection: Int?
+    let index: Int?
+    let URL: String
+    
+    var body: some View {
+        GeometryReader { proxy in
+            VStack {
+                ZStack(alignment: .bottomTrailing) {
+                    KFImage(Foundation.URL(string: URL))
+                        .resizable()
+                    
+                    Image(systemName: isPressed ? "suit.heart.fill" : "suit.heart")
+                        .animation(.linear, value: isPressed)
+                        .font(.system(size: 25))
+                        .onTapGesture {
+                            self.isPressed.toggle()
+                        }
+                        .foregroundColor(isPressed ? .red: .white)
+                }
+            }.preference(key: PhotosHeightPreferenceKey.self, value: proxy.size.width)
+                .anchorPreference(key: PhotosAnchorPreferenceKey.self, value: .bounds) {
+                    index == self.selection ? $0 : nil
+                }
+                .onTapGesture(count: 2, perform: {
+                    if index == self.selection {
+                        self.isSelected = true
+                    }
+                })
+                .onTapGesture {
+                    withAnimation(.default) {
+                        self.selection = index
+                    }
+                }
+        }
+    }
+}
