@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct vkApp: App {
-    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @State var isLogin: Bool = false
     
     var body: some Scene {

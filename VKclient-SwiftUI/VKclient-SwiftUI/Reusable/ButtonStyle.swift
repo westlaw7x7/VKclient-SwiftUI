@@ -5,7 +5,6 @@
 //  Created by Alexander Grigoryev on 21.03.2022.
 //
 
-
 import SwiftUI
 
 struct GrowingBLueButton: ButtonStyle {

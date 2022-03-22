@@ -16,14 +16,12 @@ struct AvatarImage: View {
     
     var body: some View {
         content
-//            .resizable()
             .scaledToFill()
             .frame(width: 100,
                    height: 100,
                    alignment: .leading)
             .clipShape(Circle())
             .modifier(ShadowModifier(shadowColor: .black))
-        
     }
 }
 

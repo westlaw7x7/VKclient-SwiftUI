@@ -19,7 +19,7 @@ class UserViewModel: ObservableObject, Identifiable {
     public func fetchUsers() {
         networkService.loadUsers(token: token) { [weak self] users in
             guard let self = self else { return }
-                self.users = users
+            self.users = users
         }
     }
     

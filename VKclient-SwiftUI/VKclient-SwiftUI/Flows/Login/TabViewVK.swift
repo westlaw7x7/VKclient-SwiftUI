@@ -18,8 +18,8 @@ struct TabViewVK: View {
     
     var body: some View {
         NavigationView {
-        TabView(selection: $selection, content: {
-       
+            TabView(selection: $selection, content: {
+                
                 FriendsView(viewModel: friendsViewModel)
                     .tabItem {
                         Label("Friends", systemImage: "person")
@@ -28,18 +28,16 @@ struct TabViewVK: View {
                 GroupsView(groupsViewModel: groupsViewModel)
                     .tabItem {
                         Label("Groups", systemImage: "rectangle.3.group.bubble.left")
-                        Text(pageTitles[1]).bold()
+                        Text(pageTitles[1])
                     } .tag(1)
                 NewsView()
                     .tabItem {
                         Label("News", systemImage: "newspaper")
-                        Text(pageTitles[2]).bold()
+                        Text(pageTitles[2])
                     } .tag(2)
-        
-        }).navigationTitle(Text(pageTitles[selection]))
+                
+            }).navigationTitle(Text(pageTitles[selection]))
         }
-               
-        
     }
 }
 

@@ -35,6 +35,7 @@ struct FriendsView: View {
             }.onAppear(perform: viewModel.fetchUsers)
                 .listStyle(.plain)
         }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+
         
             
            
